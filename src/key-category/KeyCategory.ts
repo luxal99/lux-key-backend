@@ -1,11 +1,9 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany } from "typeorm";
 import { KeySubCategory } from "../key-sub-category/KeySubCategory";
+import { Base } from '../generic/base.entity';
 
 @Entity("key_category", { schema: "lux_key" })
-export class KeyCategory {
-  @PrimaryGeneratedColumn({ type: "int", name: "id" })
-  id: number;
-
+export class KeyCategory extends Base{
   @Column("varchar", { name: "name", length: 64 })
   name: string;
 
@@ -25,7 +23,7 @@ export class KeyCategory {
 
   @OneToMany(
     () => KeySubCategory,
-    (keySubCategory) => keySubCategory.idCategory2
+    (keySubCategory) => keySubCategory.idCategory
   )
   keySubCategories: KeySubCategory[];
 }

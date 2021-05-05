@@ -5,12 +5,7 @@ import { Key } from "../key/Key";
 @Index("id_service", ["idService"], {})
 @Index("id_key", ["idKey"], {})
 @Entity("service_key", { schema: "lux_key" })
-export class ServiceKey {
-  @Column("int", { name: "id_service" })
-  idService: number;
-
-  @Column("int", { name: "id_key" })
-  idKey: number;
+export class ServiceKey  {
 
   @Column("double", { name: "key_price", precision: 22 })
   keyPrice: number;
@@ -20,12 +15,12 @@ export class ServiceKey {
     onUpdate: "NO ACTION",
   })
   @JoinColumn([{ name: "id_service", referencedColumnName: "id" }])
-  idService2: Service;
+  idService: Service;
 
   @ManyToOne(() => Key, (key) => key.serviceKeys, {
     onDelete: "NO ACTION",
     onUpdate: "NO ACTION",
   })
   @JoinColumn([{ name: "id_key", referencedColumnName: "id" }])
-  idKey2: Key;
+  idKey: Key;
 }

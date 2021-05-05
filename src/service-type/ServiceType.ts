@@ -1,9 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity } from "typeorm";
+import { Base } from '../generic/base.entity';
 
 @Entity("service_type", { schema: "lux_key" })
-export class ServiceType {
-  @PrimaryGeneratedColumn({ type: "int", name: "id" })
-  id: number;
+export class ServiceType  extends Base {
 
   @Column("varchar", { name: "name", length: 64 })
   name: string;

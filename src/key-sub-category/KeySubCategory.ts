@@ -4,21 +4,16 @@ import {
   Index,
   JoinColumn,
   ManyToOne,
-  PrimaryGeneratedColumn,
 } from "typeorm";
 import { KeyCategory } from "../key-category/KeyCategory";
+import { Base } from '../generic/base.entity';
 
 @Index("id_category", ["idCategory"], {})
 @Entity("key_sub_category", { schema: "lux_key" })
-export class KeySubCategory {
-  @PrimaryGeneratedColumn({ type: "int", name: "id" })
-  id: number;
+export class KeySubCategory  extends Base{
 
   @Column("varchar", { name: "name", length: 64 })
   name: string;
-
-  @Column("int", { name: "id_category" })
-  idCategory: number;
 
   @Column("timestamp", {
     name: "created_date",
@@ -39,5 +34,5 @@ export class KeySubCategory {
     onUpdate: "NO ACTION",
   })
   @JoinColumn([{ name: "id_category", referencedColumnName: "id" }])
-  idCategory2: KeyCategory;
+  idCategory: KeyCategory;
 }

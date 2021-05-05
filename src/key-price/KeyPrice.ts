@@ -5,15 +5,13 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
-  PrimaryGeneratedColumn,
 } from "typeorm";
-import { Key } from "./Key";
+import { Key } from "../key/Key";
+import { Base } from '../generic/base.entity';
 
 @Index("id_key", ["idKey"], {})
 @Entity("key_price", { schema: "lux_key" })
-export class KeyPrice {
-  @PrimaryGeneratedColumn({ type: "int", name: "id" })
-  id: number;
+export class KeyPrice  extends Base {
 
   @Column("double", { name: "price", nullable: true, precision: 22 })
   price: number | null;
@@ -32,10 +30,8 @@ export class KeyPrice {
   })
   lastModifiedDate: Date | null;
 
-  @Column("int", { name: "id_key", nullable: true })
-  idKey: number | null;
 
-  @OneToMany(() => Key, (key) => key.idCurrentPrice2)
+  @OneToMany(() => Key, (key) => key.idCurrentPrice)
   keys: Key[];
 
   @ManyToOne(() => Key, (key) => key.keyPrices, {
@@ -43,5 +39,5 @@ export class KeyPrice {
     onUpdate: "NO ACTION",
   })
   @JoinColumn([{ name: "id_key", referencedColumnName: "id" }])
-  idKey2: Key;
+  idKey: Key;
 }
