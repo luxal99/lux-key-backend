@@ -14,5 +14,6 @@ export const LIST_OF_ENTITIES = [
   Key, KeyCategory,
   KeySubCategory, KeyPrice,
   Service, ServiceKey,
-  ServiceType, User
+  ServiceType, User,
 ];
+export const PASSWORD_REGEX = '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$';

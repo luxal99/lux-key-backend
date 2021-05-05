@@ -8,6 +8,8 @@ export class User extends Base {
   @Column('varchar', { name: 'username', unique: true, length: 64 })
   username: string;
 
+  @Column('varchar', { name: 'password', unique: true, length: 64 })
+  password: string;
   @Column('timestamp', {
     name: 'created_date',
     nullable: true,
