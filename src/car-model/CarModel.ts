@@ -11,8 +11,6 @@ import { Base } from '../generic/base.entity';
 @Index('id_car_brand', ['idCarBrand'], {})
 @Entity('car_model', { schema: 'lux_key' })
 export class CarModel extends Base {
-
-
   @Column('varchar', { name: 'name', length: 64 })
   name: string;
 
