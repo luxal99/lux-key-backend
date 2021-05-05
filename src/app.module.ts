@@ -11,10 +11,27 @@ import { ServiceModule } from './service/service.module';
 import { ServiceKeyModule } from './service-key/service-key.module';
 import { ServiceTypeModule } from './service-type/service-type.module';
 import { UserModule } from './user/user.module';
-
+import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { LIST_OF_ENTITIES } from './constant/const';
 
 @Module({
-  imports: [CarBrandModule, CarModelModule, KeyModule,
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    TypeOrmModule.forRoot({
+      type: 'mariadb',
+      host: 'localhost',
+      port: 3306,
+      username: process.env.USERNAME,
+      password: process.env.PASSWORD,
+      database: process.env.DATABASE_NAME,
+      synchronize: true,
+      logging: false,
+      entities: LIST_OF_ENTITIES,
+    }),
+    CarBrandModule, CarModelModule, KeyModule,
     KeyCategoryModule, KeyPriceModule, KeySubCategoryModule, ServiceModule
     , CarModelModule, ServiceKeyModule, ServiceTypeModule, UserModule],
   controllers: [AppController],
