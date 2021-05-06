@@ -9,7 +9,6 @@ import { KeyPriceModule } from './key-price/key-price.module';
 import { KeySubCategoryModule } from './key-sub-category/key-sub-category.module';
 import { ServiceModule } from './service/service.module';
 import { ServiceKeyModule } from './service-key/service-key.module';
-import { ServiceTypeModule } from './service-type/service-type.module';
 import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -33,7 +32,7 @@ import { LIST_OF_ENTITIES } from './constant/const';
     }),
     CarBrandModule, CarModelModule, KeyModule,
     KeyCategoryModule, KeyPriceModule, KeySubCategoryModule, ServiceModule
-    , CarModelModule, ServiceKeyModule, ServiceTypeModule, UserModule],
+    , CarModelModule, ServiceKeyModule, UserModule],
   controllers: [AppController],
   providers: [AppService],
 })

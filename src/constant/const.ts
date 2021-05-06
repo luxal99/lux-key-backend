@@ -6,14 +6,12 @@ import { KeySubCategory } from '../key-sub-category/KeySubCategory';
 import { KeyPrice } from '../key-price/KeyPrice';
 import { Service } from '../service/Service';
 import { ServiceKey } from '../service-key/ServiceKey';
-import { ServiceType } from '../service-type/ServiceType';
 import { User } from '../user/User';
 
 export const LIST_OF_ENTITIES = [
   CarModel, CarBrand,
   Key, KeyCategory,
   KeySubCategory, KeyPrice,
-  Service, ServiceKey,
-  ServiceType, User,
+  Service, ServiceKey, User,
 ];
 export const PASSWORD_REGEX = '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$';

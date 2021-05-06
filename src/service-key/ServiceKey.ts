@@ -2,6 +2,7 @@ import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
 import { Service } from '../service/Service';
 import { Key } from '../key/Key';
 import { Base } from '../generic/base.entity';
+import { ApiProperty } from '@nestjs/swagger';
 
 @Index('id_service', ['idService'], {})
 @Index('id_key', ['idKey'], {})
@@ -9,6 +10,7 @@ import { Base } from '../generic/base.entity';
 export class ServiceKey extends Base {
 
   @Column('double', { name: 'key_price', precision: 22 })
+  @ApiProperty()
   keyPrice: number;
 
   @ManyToOne(() => Service, (service) => service.serviceKeys, {
@@ -16,8 +18,10 @@ export class ServiceKey extends Base {
     onUpdate: 'NO ACTION',
   })
   @JoinColumn([{ name: 'id_service', referencedColumnName: 'id' }])
+  @ApiProperty()
   idService: Service;
 
+  @ApiProperty({ type: () => Key })
   @ManyToOne(() => Key, (key) => key.serviceKeys, {
     onDelete: 'NO ACTION',
     onUpdate: 'NO ACTION',
