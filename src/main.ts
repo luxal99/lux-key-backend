@@ -13,6 +13,7 @@ import { ServiceType } from './enum/ServiceType';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.setGlobalPrefix('lux');
   const config = new DocumentBuilder()
     .setTitle('Lux key API')
     .setVersion('1.0')
