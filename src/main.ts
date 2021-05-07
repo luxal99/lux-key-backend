@@ -9,7 +9,6 @@ import { KeyCategory } from './key-category/KeyCategory';
 import { KeySubCategory } from './key-sub-category/KeySubCategory';
 import { KeyPrice } from './key-price/KeyPrice';
 import { ServiceKey } from './service-key/ServiceKey';
-import { ServiceType } from './enum/ServiceType';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

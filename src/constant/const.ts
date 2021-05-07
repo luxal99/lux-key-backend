@@ -15,3 +15,14 @@ export const LIST_OF_ENTITIES = [
   Service, ServiceKey, User,
 ];
 export const PASSWORD_REGEX = '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$';
+export const TOKEN_NAME = 'Authorization';
+
+export class Message {
+  static ACCESS_DENIED_MESSAGE = 'Pristup odbijen';
+  static INVALID_TOKEN_MESSAGE = 'Nevalidan token';
+}
+
+export class RestRoutes {
+  static PREFIX = '/lux/';
+  static JWT = '/jwt';
+}

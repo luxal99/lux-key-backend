@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CarBrandModule } from './car-brand/car-brand.module';
@@ -12,7 +12,9 @@ import { ServiceKeyModule } from './service-key/service-key.module';
 import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { LIST_OF_ENTITIES } from './constant/const';
+import { LIST_OF_ENTITIES, RestRoutes } from './constant/const';
+import { JWTMiddle } from './middleware/jwt.middle';
+import { JwtModule } from './controller/jwt/jwt.module';
 
 @Module({
   imports: [
@@ -30,11 +32,14 @@ import { LIST_OF_ENTITIES } from './constant/const';
       logging: false,
       entities: LIST_OF_ENTITIES,
     }),
-    CarBrandModule, CarModelModule, KeyModule,
+    CarBrandModule, CarModelModule, KeyModule, JwtModule,
     KeyCategoryModule, KeyPriceModule, KeySubCategoryModule, ServiceModule
     , CarModelModule, ServiceKeyModule, UserModule],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer): any {
+    consumer.apply(JWTMiddle).forRoutes({ method: RequestMethod.GET, path: RestRoutes.JWT });
+  }
 }
