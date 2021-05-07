@@ -50,7 +50,7 @@ export class Key extends Base {
   @JoinColumn([{ name: 'id_current_price', referencedColumnName: 'id' }])
   idCurrentPrice: KeyPrice;
 
-  @ApiProperty()
+  @ApiProperty({ type: () => KeySubCategory })
   @ManyToOne(() => KeySubCategory, (keySubCategory) => keySubCategory.keys, {
     onDelete: 'NO ACTION',
     onUpdate: 'NO ACTION',

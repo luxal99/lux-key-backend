@@ -6,6 +6,6 @@ import { CarModelRepository } from './car-model.repository';
 @Injectable()
 export class CarModelService extends GenericService<CarModel> {
   constructor(private readonly repository: CarModelRepository) {
-    super(repository, []);
+    super(repository, ['idCarBrand']);
   }
 }
