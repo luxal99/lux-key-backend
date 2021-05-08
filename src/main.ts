@@ -9,6 +9,7 @@ import { KeyCategory } from './key-category/KeyCategory';
 import { KeySubCategory } from './key-sub-category/KeySubCategory';
 import { KeyPrice } from './key-price/KeyPrice';
 import { ServiceKey } from './service-key/ServiceKey';
+import { Client } from './client/Client';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -20,7 +21,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config, {
     extraModels:
       [
-        CarBrand, CarModel, Key, KeyCategory, KeySubCategory
+        CarBrand, CarModel, Client, Key, KeyCategory, KeySubCategory
         , KeyPrice, KeySubCategory, Service, ServiceKey],
   });
   SwaggerModule.setup('api', app, document);
