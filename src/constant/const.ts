@@ -7,11 +7,12 @@ import { KeyPrice } from '../key-price/KeyPrice';
 import { Service } from '../service/Service';
 import { ServiceKey } from '../service-key/ServiceKey';
 import { User } from '../user/User';
+import { Client } from '../client/Client';
 
 export const LIST_OF_ENTITIES = [
   CarModel, CarBrand,
   Key, KeyCategory,
-  KeySubCategory, KeyPrice,
+  KeySubCategory, Client, KeyPrice,
   Service, ServiceKey, User,
 ];
 export const PASSWORD_REGEX = '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$';

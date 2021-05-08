@@ -1,8 +1,9 @@
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import { ServiceKey } from '../service-key/ServiceKey';
 import { Base } from '../generic/base.entity';
 import { ApiProperty } from '@nestjs/swagger';
 import { ServiceType } from '../enum/ServiceType';
+import { Client } from '../client/Client';
 
 @Entity('service', { schema: 'lux_key' })
 export class Service extends Base {
@@ -48,4 +49,8 @@ export class Service extends Base {
   @OneToMany(() => ServiceKey, (serviceKey) => serviceKey.idService)
   @ApiProperty({ type: () => ServiceKey })
   serviceKeys: ServiceKey[];
+
+  @ApiProperty({ type: () => Client })
+  @ManyToOne(type => Client, (client) => client.services)
+  idClient: Client;
 }
