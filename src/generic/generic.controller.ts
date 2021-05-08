@@ -9,8 +9,12 @@ export class GenericController<T> {
 
   @Post()
   async post(@Body() entity: T, @Res() res: Response) {
-    const entityResponse = await this.genericService.save(entity);
-    res.send(entityResponse);
+    try {
+      const entityResponse = await this.genericService.save(entity);
+      res.send(entityResponse);
+    } catch (err) {
+      res.status(HttpStatus.BAD_REQUEST).send({ err });
+    }
   }
 
   @Put()
@@ -26,7 +30,11 @@ export class GenericController<T> {
 
   @Get()
   async get(@Res() res: Response, @Req() req: Request) {
-    res.send(await this.genericService.findAll());
+    try {
+      res.send(await this.genericService.findAll());
+    } catch (err) {
+      res.status(HttpStatus.BAD_GATEWAY).send({ err });
+    }
   }
 
   @Get('/:id')
@@ -39,7 +47,7 @@ export class GenericController<T> {
   }
 
   @Delete('/:id')
-  async delete(@Param('id')id: number, @Res() res: Response) {
+  async delete(@Param('id') id: number, @Res() res: Response) {
     try {
       await this.genericService.delete(id).then(() => {
         res.sendStatus(HttpStatus.OK);

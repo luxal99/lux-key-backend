@@ -46,7 +46,7 @@ export class Key extends Base {
   lastModifiedDate: Date | null;
 
   @ApiProperty()
-  @OneToOne(() => KeyPrice)
+  @OneToOne(() => KeyPrice, { cascade: true })
   @JoinColumn([{ name: 'id_current_price', referencedColumnName: 'id' }])
   idCurrentPrice: KeyPrice;
 
@@ -59,7 +59,7 @@ export class Key extends Base {
   idKeySubCategory: KeySubCategory;
 
   @ApiProperty({ type: () => KeyPrice })
-  @OneToMany(() => KeyPrice, (keyPrice) => keyPrice.idKey)
+  @OneToMany(() => KeyPrice, (keyPrice) => keyPrice.idKey, { cascade: true })
   keyPrices: KeyPrice[];
 
   @OneToMany(() => ServiceKey, (serviceKey) => serviceKey.idKey)
