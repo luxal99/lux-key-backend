@@ -3,11 +3,13 @@ import {
   Entity,
   Index,
   JoinColumn,
-  ManyToOne,
+  ManyToOne, OneToMany,
 } from 'typeorm';
 import { CarBrand } from '../car-brand/CarBrand';
 import { Base } from '../generic/base.entity';
 import { ApiProperty } from '@nestjs/swagger';
+import { KeyPrice } from '../key-price/KeyPrice';
+import { Key } from '../key/Key';
 
 @Index('id_car_brand', ['idCarBrand'], {})
 @Entity('car_model', { schema: 'lux_key' })
@@ -40,4 +42,9 @@ export class CarModel extends Base {
   })
   @JoinColumn([{ name: 'id_car_brand', referencedColumnName: 'id' }])
   idCarBrand: CarBrand;
+
+  @ApiProperty({ type: () => Key })
+  @OneToMany(() => Key, (keyPrice) => keyPrice.idCarModel, { cascade: true })
+  keys: Key[];
+
 }

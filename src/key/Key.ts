@@ -11,6 +11,7 @@ import { ServiceKey } from '../service-key/ServiceKey';
 import { Base } from '../generic/base.entity';
 import { ApiProperty } from '@nestjs/swagger';
 import { KeySubCategory } from '../key-sub-category/KeySubCategory';
+import { CarModel } from '../car-model/CarModel';
 
 @Index('code', ['code'], { unique: true })
 @Index('id_current_price', ['idCurrentPrice'], {})
@@ -57,6 +58,14 @@ export class Key extends Base {
   })
   @JoinColumn([{ name: 'id_key_sub_category', referencedColumnName: 'id' }])
   idKeySubCategory: KeySubCategory;
+
+  @ApiProperty({ type: () => CarModel })
+  @ManyToOne(() => CarModel, (carModel) => carModel.keys, {
+    onDelete: 'NO ACTION',
+    onUpdate: 'NO ACTION',
+  })
+  @JoinColumn([{ name: 'id_car_model', referencedColumnName: 'id' }])
+  idCarModel: CarModel;
 
   @ApiProperty({ type: () => KeyPrice })
   @OneToMany(() => KeyPrice, (keyPrice) => keyPrice.idKey, { cascade: true })
