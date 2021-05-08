@@ -15,6 +15,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { LIST_OF_ENTITIES, RestRoutes } from './constant/const';
 import { JWTMiddle } from './middleware/jwt.middle';
 import { JwtModule } from './controller/jwt/jwt.module';
+import { ClientModule } from './client/client.module';
 
 @Module({
   imports: [
@@ -34,7 +35,7 @@ import { JwtModule } from './controller/jwt/jwt.module';
     }),
     CarBrandModule, CarModelModule, KeyModule, JwtModule,
     KeyCategoryModule, KeyPriceModule, KeySubCategoryModule, ServiceModule
-    , CarModelModule, ServiceKeyModule, UserModule],
+    , CarModelModule, ServiceKeyModule, UserModule, ClientModule],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -29,7 +29,7 @@ export class KeyCategory extends Base {
   @ApiProperty({ type: () => KeySubCategory })
   @OneToMany(
     () => KeySubCategory,
-    (keySubCategory) => keySubCategory.idCategory,
+    (keySubCategory) => keySubCategory.idKeyCategory,
   )
   keySubCategories: KeySubCategory[];
 }

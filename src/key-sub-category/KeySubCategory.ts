@@ -10,7 +10,7 @@ import { Base } from '../generic/base.entity';
 import { Key } from '../key/Key';
 import { ApiProperty } from '@nestjs/swagger';
 
-@Index('id_category', ['idCategory'], {})
+@Index('id_key_category', ['idKeyCategory'], {})
 @Entity('key_sub_category', { schema: 'lux_key' })
 export class KeySubCategory extends Base {
 
@@ -41,8 +41,8 @@ export class KeySubCategory extends Base {
     onUpdate: 'NO ACTION',
   })
   @ApiProperty({ type: () => KeyCategory })
-  @JoinColumn([{ name: 'id_category', referencedColumnName: 'id' }])
-  idCategory: KeyCategory;
+  @JoinColumn([{ name: 'id_key_category', referencedColumnName: 'id' }])
+  idKeyCategory: KeyCategory;
 
   @ApiProperty({ type: () => Key })
   @OneToMany(() => Key, (key) => key.idKeySubCategory)
