@@ -53,4 +53,8 @@ export class Service extends Base {
   @ApiProperty({ type: () => Client })
   @ManyToOne(type => Client, (client) => client.services)
   idClient: Client;
+
+  @ApiProperty()
+  @Column({ type: 'longtext' })
+  notes: string;
 }
