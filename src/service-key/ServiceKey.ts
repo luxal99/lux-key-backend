@@ -14,10 +14,10 @@ export class ServiceKey extends Base {
   keyPrice: number;
 
   @ManyToOne(() => Service, (service) => service.serviceKeys, {
-    onDelete: 'NO ACTION',
+    onDelete: 'CASCADE',
     onUpdate: 'NO ACTION',
   })
-  @JoinColumn([{ name: 'id_service', referencedColumnName: 'id' }])
+  @JoinColumn([{ name: 'id_service', referencedColumnName: 'id'}])
   @ApiProperty()
   idService: Service;
 

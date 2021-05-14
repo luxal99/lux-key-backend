@@ -46,7 +46,11 @@ export class Service extends Base {
   @ApiProperty()
   lastModifiedDate: Date | null;
 
-  @OneToMany(() => ServiceKey, (serviceKey) => serviceKey.idService)
+  @OneToMany(() => ServiceKey, (serviceKey) => serviceKey.idService, {
+    cascade: true,
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   @ApiProperty({ type: () => ServiceKey })
   serviceKeys: ServiceKey[];
 

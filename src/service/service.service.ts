@@ -7,6 +7,6 @@ import { ServiceRepository } from './service.repository';
 export class ServiceService extends GenericService<Service>{
 
   constructor(genericRepository: ServiceRepository) {
-    super(genericRepository, ['serviceKeys','idClient']);
+    super(genericRepository, ['serviceKeys','idClient','serviceKeys.idKey','serviceKeys.idKey.idCurrentPrice']);
   }
 }

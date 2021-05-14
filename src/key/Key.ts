@@ -68,7 +68,7 @@ export class Key extends Base {
   idCarModel: CarModel;
 
   @ApiProperty({ type: () => KeyPrice })
-  @OneToMany(() => KeyPrice, (keyPrice) => keyPrice.idKey, { cascade: true })
+  @OneToMany(() => KeyPrice, (keyPrice) => keyPrice.idKey, { cascade: true, onDelete: 'CASCADE' })
   keyPrices: KeyPrice[];
 
   @OneToMany(() => ServiceKey, (serviceKey) => serviceKey.idKey)

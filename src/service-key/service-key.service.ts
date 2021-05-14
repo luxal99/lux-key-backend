@@ -7,6 +7,6 @@ import { ServiceKeyRepository } from './service-key.repository';
 export class ServiceKeyService extends GenericService<ServiceKey> {
 
   constructor(genericRepository: ServiceKeyRepository) {
-    super(genericRepository, []);
+    super(genericRepository, ['idKey','idKey.idCurrentPrice']);
   }
 }

@@ -52,8 +52,8 @@ export class GenericController<T> {
       await this.genericService.delete(id).then(() => {
         res.sendStatus(HttpStatus.OK);
       });
-    } catch (e) {
-      res.sendStatus(HttpStatus.BAD_GATEWAY);
+    } catch (err) {
+      res.status(HttpStatus.BAD_GATEWAY).send({ err });
     }
   }
 
