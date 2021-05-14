@@ -75,6 +75,10 @@ export class Key extends Base {
   @OneToMany(() => KeyPrice, (keyPrice) => keyPrice.idKey, { cascade: true, onDelete: 'CASCADE' })
   keyPrices: KeyPrice[];
 
-  @OneToMany(() => ServiceKey, (serviceKey) => serviceKey.idKey)
+  @OneToMany(() => ServiceKey, (serviceKey) => serviceKey.idKey, {
+    cascade: true,
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   serviceKeys: ServiceKey[];
 }
