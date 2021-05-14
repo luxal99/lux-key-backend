@@ -27,6 +27,10 @@ export class Key extends Base {
   amount: number | null;
 
   @ApiProperty()
+  @Column('double', { name: 'purchase_price', nullable: false })
+  purchasePrice: number | null;
+
+  @ApiProperty()
   @Column('varchar', { name: 'code', unique: true, length: 64 })
   code: string;
 
