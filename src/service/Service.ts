@@ -2,7 +2,6 @@ import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import { ServiceKey } from '../service-key/ServiceKey';
 import { Base } from '../generic/base.entity';
 import { ApiProperty } from '@nestjs/swagger';
-import { ServiceType } from '../enum/ServiceType';
 import { Client } from '../client/Client';
 
 @Entity('service', { schema: 'lux_key' })
@@ -22,13 +21,6 @@ export class Service extends Base {
   @ApiProperty()
   @Column('double', { name: 'gross', precision: 22 })
   gross: number;
-
-
-  @Column({
-    type: 'enum',
-    enum: ServiceType,
-  })
-  serviceType: ServiceType;
 
   @Column('timestamp', {
     name: 'created_date',
