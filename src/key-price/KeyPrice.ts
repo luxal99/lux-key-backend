@@ -14,7 +14,6 @@ import { ApiProperty } from '@nestjs/swagger';
 @Entity('key_price', { schema: 'lux_key' })
 export class KeyPrice extends Base {
 
-  @ApiProperty()
   @Column('double', { name: 'price', nullable: true, precision: 22 })
   price: number | null;
 
@@ -32,7 +31,6 @@ export class KeyPrice extends Base {
   })
   lastModifiedDate: Date | null;
 
-  @ApiProperty({ type: () => Key })
   @ManyToOne(() => Key, (key) => key.keyPrices, {
     onDelete: 'NO ACTION',
     onUpdate: 'NO ACTION',

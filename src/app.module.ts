@@ -25,7 +25,7 @@ import { ClientModule } from './client/client.module';
       type: 'mysql',
       host: 'localhost',
       port: 3306,
-      username: process.env.USERNAME,
+      username: 'root',
       password: process.env.PASSWORD,
       database: process.env.DATABASE_NAME,
       synchronize: true,

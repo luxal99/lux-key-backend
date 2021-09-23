@@ -6,8 +6,8 @@ import { Client } from '../client/Client';
 
 @Entity('service', { schema: 'lux_key' })
 export class Service extends Base {
+
   @Column('date', { name: 'date' })
-  @ApiProperty()
   date: string;
 
   @Column('double', {
@@ -15,10 +15,8 @@ export class Service extends Base {
     nullable: true,
     precision: 22,
   })
-  @ApiProperty()
   codingServicePrice: number | null;
 
-  @ApiProperty()
   @Column('double', { name: 'gross', precision: 22 })
   gross: number;
 
@@ -27,7 +25,6 @@ export class Service extends Base {
     nullable: true,
     default: () => 'CURRENT_TIMESTAMP',
   })
-  @ApiProperty()
   createdDate: Date | null;
 
   @Column('timestamp', {
@@ -35,7 +32,6 @@ export class Service extends Base {
     nullable: true,
     default: () => 'CURRENT_TIMESTAMP',
   })
-  @ApiProperty()
   lastModifiedDate: Date | null;
 
   @OneToMany(() => ServiceKey, (serviceKey) => serviceKey.idService, {
@@ -43,14 +39,11 @@ export class Service extends Base {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
   })
-  @ApiProperty({ type: () => ServiceKey })
   serviceKeys: ServiceKey[];
 
-  @ApiProperty({ type: () => Client })
   @ManyToOne(type => Client, (client) => client.services)
   idClient: Client;
 
-  @ApiProperty()
   @Column({ type: 'longtext' })
   notes: string;
 }

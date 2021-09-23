@@ -11,11 +11,9 @@ import { ServiceType } from '../enum/ServiceType';
 export class ServiceKey extends Base {
 
   @Column('double', { name: 'key_price', precision: 22 })
-  @ApiProperty()
   keyPrice: number;
 
   @Column('double', { name: 'key_purchase_price' })
-  @ApiProperty()
   keyPurchasePrice: number;
 
 
@@ -24,10 +22,8 @@ export class ServiceKey extends Base {
     onUpdate: 'NO ACTION',
   })
   @JoinColumn([{ name: 'id_service', referencedColumnName: 'id' }])
-  @ApiProperty()
   idService: Service;
 
-  @ApiProperty({ type: () => Key })
   @ManyToOne(() => Key, (key) => key.serviceKeys, {
     onDelete: 'NO ACTION',
     onUpdate: 'NO ACTION',

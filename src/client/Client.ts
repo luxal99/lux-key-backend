@@ -17,7 +17,6 @@ export class Client extends Base {
   @Column({ nullable: false })
   telephone: string;
 
-  @ApiProperty({ type: () => Service })
   @OneToMany(type => Service, (service) => service.idClient)
   services: Service[];
 }

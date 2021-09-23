@@ -18,23 +18,18 @@ import { CarModel } from '../car-model/CarModel';
 @Entity('key', { schema: 'lux_key' })
 export class Key extends Base {
 
-  @ApiProperty()
   @Column('varchar', { name: 'name', length: 64 })
   name: string;
 
-  @ApiProperty()
   @Column('int', { name: 'amount', nullable: true })
   amount: number | null;
 
-  @ApiProperty()
   @Column('double', { name: 'purchase_price', nullable: false })
   purchasePrice: number | null;
 
-  @ApiProperty()
   @Column('varchar', { name: 'code', unique: true, length: 64 })
   code: string;
 
-  @ApiProperty()
   @Column('timestamp', {
     name: 'created_date',
     nullable: true,
@@ -42,7 +37,6 @@ export class Key extends Base {
   })
   createdDate: Date | null;
 
-  @ApiProperty()
   @Column('timestamp', {
     name: 'last_modified_date',
     nullable: true,
@@ -50,12 +44,10 @@ export class Key extends Base {
   })
   lastModifiedDate: Date | null;
 
-  @ApiProperty()
   @OneToOne(() => KeyPrice, { cascade: true })
   @JoinColumn([{ name: 'id_current_price', referencedColumnName: 'id' }])
   idCurrentPrice: KeyPrice;
 
-  @ApiProperty({ type: () => KeySubCategory })
   @ManyToOne(() => KeySubCategory, (keySubCategory) => keySubCategory.keys, {
     onDelete: 'NO ACTION',
     onUpdate: 'NO ACTION',
@@ -63,7 +55,6 @@ export class Key extends Base {
   @JoinColumn([{ name: 'id_key_sub_category', referencedColumnName: 'id' }])
   idKeySubCategory: KeySubCategory;
 
-  @ApiProperty({ type: () => CarModel })
   @ManyToOne(() => CarModel, (carModel) => carModel.keys, {
     onDelete: 'NO ACTION',
     onUpdate: 'NO ACTION',

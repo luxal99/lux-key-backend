@@ -6,11 +6,9 @@ import { ApiProperty } from '@nestjs/swagger';
 @Entity('key_category', { schema: 'lux_key' })
 export class KeyCategory extends Base {
 
-  @ApiProperty()
   @Column('varchar', { name: 'name', length: 64 })
   name: string;
 
-  @ApiProperty()
   @Column('timestamp', {
     name: 'created_date',
     nullable: true,
@@ -18,7 +16,6 @@ export class KeyCategory extends Base {
   })
   createdDate: Date | null;
 
-  @ApiProperty()
   @Column('timestamp', {
     name: 'last_modified_date',
     nullable: true,
@@ -26,7 +23,6 @@ export class KeyCategory extends Base {
   })
   lastModifiedDate: Date | null;
 
-  @ApiProperty({ type: () => KeySubCategory })
   @OneToMany(
     () => KeySubCategory,
     (keySubCategory) => keySubCategory.idKeyCategory,
