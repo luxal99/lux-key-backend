@@ -41,7 +41,8 @@ import { ClientModule } from './client/client.module';
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): any {
     consumer.apply(JWTMiddle).exclude(
-      {path: 'user/auth', method: RequestMethod.POST}
+      {path: 'user/auth', method: RequestMethod.POST},
+      {path: 'jwt', method: RequestMethod.GET},
     ).forRoutes('*');
   }
 }
