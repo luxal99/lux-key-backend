@@ -1,4 +1,3 @@
-create database lux_key;
 use lux_key;
 
 create table user
