@@ -4,6 +4,7 @@ create table user
 (
     id                 int auto_increment primary key,
     username           varchar(64) not null unique,
+    password           varchar(64) not null,
     created_date       timestamp default CURRENT_TIMESTAMP(),
     last_modified_date timestamp default CURRENT_TIMESTAMP()
 );
@@ -64,13 +65,6 @@ create table car_model
     foreign key (id_car_brand) references car_brand (id)
 );
 
-create table service_type
-(
-    id                 int auto_increment primary key,
-    name               varchar(64) not null,
-    created_date       timestamp default CURRENT_TIMESTAMP(),
-    last_modified_date timestamp default CURRENT_TIMESTAMP()
-);
 
 create table service
 (

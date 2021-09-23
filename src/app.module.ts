@@ -40,8 +40,8 @@ import { ClientModule } from './client/client.module';
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): any {
-    consumer.apply(JWTMiddle).forRoutes({ method: RequestMethod.GET, path: RestRoutes.JWT });
-    consumer.apply(JWTMiddle).exclude({ path: '/lux/user/auth', method: RequestMethod.POST })
-      .forRoutes('*');
+    consumer.apply(JWTMiddle).exclude(
+      {path: 'user/auth', method: RequestMethod.POST}
+    ).forRoutes('*');
   }
 }
