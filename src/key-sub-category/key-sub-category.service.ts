@@ -7,6 +7,6 @@ import { KeySubCategory } from './KeySubCategory';
 export class KeySubCategoryService extends GenericService<KeySubCategory> {
 
   constructor(private repository: KeySubCategoryRepository) {
-    super(repository, ['idKeyCategory','keys','keys.idCurrentPrice']);
+    super(repository, ['idKeyCategory','keys','keys.idCurrentPrice','keys.keyPrices','keys.idCarModel','keys.idKeySubCategory']);
   }
 }
