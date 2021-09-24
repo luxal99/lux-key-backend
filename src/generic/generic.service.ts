@@ -42,4 +42,8 @@ export class GenericService<T> implements GenericInterface<T> {
   async deleteAll(ids: number[]) {
     await this.genericRepository.delete(ids);
   }
+
+  get getRelations(): string[] {
+    return this.relations;
+  }
 }

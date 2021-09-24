@@ -1,9 +1,9 @@
-import { Controller, Get, HttpStatus, Res } from '@nestjs/common';
+import { Controller, Get, HttpStatus, Query, Res } from '@nestjs/common';
 import { KeyService } from './key.service';
 import { GenericController } from '../generic/generic.controller';
 import { Key } from './Key';
 import { Response } from 'express';
-import {  getRepository } from 'typeorm';
+import { getRepository } from 'typeorm';
 
 @Controller('key')
 export class KeyController extends GenericController<Key> {
@@ -17,6 +17,15 @@ export class KeyController extends GenericController<Key> {
       res.send(await getRepository(Key).createQueryBuilder('key').where('amount <= 1').getMany());
     } catch (err) {
       res.status(HttpStatus.BAD_REQUEST).send({ err });
+    }
+  }
+
+  @Get('search')
+  async searchKey(@Query() query, @Res() res: Response): Promise<void> {
+    try{
+      res.send(await this.keyService.searchKey(query.search))
+    }catch (err){
+      res.status(HttpStatus.BAD_REQUEST).send({err})
     }
   }
 }
