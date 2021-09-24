@@ -24,9 +24,6 @@ export class Key extends Base {
   @Column('int', { name: 'amount', nullable: true })
   amount: number | null;
 
-  @Column('double', { name: 'purchase_price', nullable: false })
-  purchasePrice: number | null;
-
   @Column('varchar', { name: 'code', unique: true, length: 64 })
   code: string;
 
