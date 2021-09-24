@@ -12,10 +12,20 @@ import { ServiceKeyModule } from './service-key/service-key.module';
 import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { LIST_OF_ENTITIES, RestRoutes } from './constant/const';
+import { LIST_OF_ENTITIES } from './constant/const';
 import { JWTMiddle } from './middleware/jwt.middle';
 import { JwtModule } from './controller/jwt/jwt.module';
 import { ClientModule } from './client/client.module';
+import { UserController } from './user/user.controller';
+import { CarBrandController } from './car-brand/car-brand.controller';
+import { ClientController } from './client/client.controller';
+import { KeyController } from './key/key.controller';
+import { KeyCategoryController } from './key-category/key-category.controller';
+import { KeyPriceController } from './key-price/key-price.controller';
+import { KeySubCategoryController } from './key-sub-category/key-sub-category.controller';
+import { ServiceKeyController } from './service-key/service-key.controller';
+import { ServiceController } from './service/service.controller';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -41,8 +51,9 @@ import { ClientModule } from './client/client.module';
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): any {
     consumer.apply(JWTMiddle).exclude(
-      {path: 'user/auth', method: RequestMethod.POST},
-      {path: 'jwt', method: RequestMethod.GET},
-    ).forRoutes('*');
+      { path: 'user/auth', method: RequestMethod.POST },
+      { path: 'jwt', method: RequestMethod.GET },
+    ).forRoutes(UserController, CarBrandController, ClientController, KeyController, KeyCategoryController,
+      KeyPriceController, KeySubCategoryController, ServiceKeyController, ServiceController);
   }
 }
