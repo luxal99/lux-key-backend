@@ -31,10 +31,7 @@ export class KeyPrice extends Base {
   })
   lastModifiedDate: Date | null;
 
-  @ManyToOne(() => Key, (key) => key.keyPrices, {
-    onDelete: 'NO ACTION',
-    onUpdate: 'NO ACTION',
-  })
+  @ManyToOne(() => Key, (key) => key.keyPrices, { cascade: true, onDelete: 'CASCADE' })
   @JoinColumn([{ name: 'id_key', referencedColumnName: 'id' }])
   idKey: Key;
 }
