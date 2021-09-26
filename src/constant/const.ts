@@ -8,12 +8,13 @@ import { Service } from '../service/Service';
 import { ServiceKey } from '../service-key/ServiceKey';
 import { User } from '../user/User';
 import { Client } from '../client/Client';
+import { Report } from '../report/Report';
 
 export const LIST_OF_ENTITIES = [
   CarModel, CarBrand,
   Key, KeyCategory,
   KeySubCategory, Client, KeyPrice,
-  Service, ServiceKey, User,
+  Service, ServiceKey, User, Report,
 ];
 export const PASSWORD_REGEX = '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$';
 export const TOKEN_NAME = 'Authorization';
@@ -27,3 +28,5 @@ export class RestRoutes {
   static PREFIX = '/lux/';
   static JWT = '/jwt';
 }
+
+export const REPORT_PATH = '/home/luxal/PC/Project/LuxKey/lux-key-frontend/src/assets/reports/';
