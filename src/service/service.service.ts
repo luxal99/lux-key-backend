@@ -8,7 +8,7 @@ export class ServiceService extends GenericService<Service> {
 
   constructor(genericRepository: ServiceRepository) {
     super(genericRepository, ['serviceKeys', 'idClient', 'serviceKeys.idKey',
-      'serviceKeys.idKey.idCurrentPrice', 'serviceKeys.idKey.idCarModel',
-      'serviceKeys.idKey.idCarModel.idCarBrand']);
+      'serviceKeys.idKey.idCurrentPrice',
+      'serviceKeys.idKey.carBrands']);
   }
 }

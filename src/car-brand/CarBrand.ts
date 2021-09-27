@@ -1,7 +1,6 @@
 import { Column, Entity, OneToMany } from 'typeorm';
-import { CarModel } from '../car-model/CarModel';
 import { Base } from '../generic/base.entity';
-import { ApiProperty } from '@nestjs/swagger';
+import { Key } from '../key/Key';
 
 @Entity('car_brand', { schema: 'lux_key' })
 export class CarBrand extends Base {
@@ -23,6 +22,4 @@ export class CarBrand extends Base {
   })
   lastModifiedDate: Date | null;
 
-  @OneToMany(() => CarModel, (carModel) => carModel.idCarBrand)
-  carModels: CarModel[];
 }

@@ -7,6 +7,6 @@ import { CarBrandRepository } from './car-brand.repository';
 export class CarBrandService extends GenericService<CarBrand> {
 
   constructor(private repository: CarBrandRepository) {
-    super(repository, ['carModels']);
+    super(repository, []);
   }
 }

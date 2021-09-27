@@ -2,7 +2,6 @@ import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/c
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CarBrandModule } from './car-brand/car-brand.module';
-import { CarModelModule } from './car-model/car-model.module';
 import { KeyModule } from './key/key.module';
 import { KeyCategoryModule } from './key-category/key-category.module';
 import { KeyPriceModule } from './key-price/key-price.module';
@@ -43,9 +42,9 @@ import { ReportModule } from './report/report.module';
       logging: false,
       entities: LIST_OF_ENTITIES,
     }),
-    CarBrandModule, CarModelModule, KeyModule, JwtModule,
+    CarBrandModule, KeyModule, JwtModule,
     KeyCategoryModule, KeyPriceModule, KeySubCategoryModule, ServiceModule
-    , CarModelModule, ServiceKeyModule, UserModule, ClientModule, ReportModule],
+    , ServiceKeyModule, UserModule, ClientModule, ReportModule],
   controllers: [AppController],
   providers: [AppService],
 })

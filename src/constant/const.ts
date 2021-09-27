@@ -1,4 +1,3 @@
-import { CarModel } from '../car-model/CarModel';
 import { CarBrand } from '../car-brand/CarBrand';
 import { Key } from '../key/Key';
 import { KeyCategory } from '../key-category/KeyCategory';
@@ -11,7 +10,7 @@ import { Client } from '../client/Client';
 import { Report } from '../report/Report';
 
 export const LIST_OF_ENTITIES = [
-  CarModel, CarBrand,
+  CarBrand,
   Key, KeyCategory,
   KeySubCategory, Client, KeyPrice,
   Service, ServiceKey, User, Report,

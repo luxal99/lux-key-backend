@@ -1,9 +1,9 @@
-import { Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, OneToOne } from 'typeorm';
+import { Column, Entity, Index, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, OneToOne } from 'typeorm';
 import { KeyPrice } from '../key-price/KeyPrice';
 import { ServiceKey } from '../service-key/ServiceKey';
 import { Base } from '../generic/base.entity';
 import { KeySubCategory } from '../key-sub-category/KeySubCategory';
-import { CarModel } from '../car-model/CarModel';
+import { CarBrand } from '../car-brand/CarBrand';
 
 @Index('code', ['code'], { unique: true })
 @Index('id_current_price', ['idCurrentPrice'], {})
@@ -44,12 +44,9 @@ export class Key extends Base {
   @JoinColumn([{ name: 'id_key_sub_category', referencedColumnName: 'id' }])
   idKeySubCategory: KeySubCategory;
 
-  @ManyToOne(() => CarModel, (carModel) => carModel.keys, {
-    onDelete: 'NO ACTION',
-    onUpdate: 'NO ACTION'
-  })
-  @JoinColumn([{ name: 'id_car_model', referencedColumnName: 'id', }])
-  idCarModel: CarModel;
+  @ManyToMany(() => CarBrand)
+  @JoinTable()
+  carBrands: CarBrand[];
 
   @OneToMany(() => KeyPrice, (keyPrice) => keyPrice.idKey)
   keyPrices: KeyPrice[];

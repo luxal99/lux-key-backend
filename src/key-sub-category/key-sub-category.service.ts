@@ -8,8 +8,7 @@ export class KeySubCategoryService extends GenericService<KeySubCategory> {
 
   constructor(private repository: KeySubCategoryRepository) {
     super(repository, ['idKeyCategory','keys',
-      'keys.idCurrentPrice','keys.keyPrices','keys.idCarModel',
-      'keys.idCarModel.idCarBrand',
+      'keys.idCurrentPrice','keys.keyPrices','keys.carBrands',
       'keys.idKeySubCategory']);
   }
 }
