@@ -46,8 +46,7 @@ export class Key extends Base {
 
   @ManyToOne(() => CarModel, (carModel) => carModel.keys, {
     onDelete: 'NO ACTION',
-    onUpdate: 'NO ACTION',
-    nullable:false
+    onUpdate: 'NO ACTION'
   })
   @JoinColumn([{ name: 'id_car_model', referencedColumnName: 'id', }])
   idCarModel: CarModel;

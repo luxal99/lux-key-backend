@@ -37,7 +37,7 @@ export class ServiceController extends GenericController<Service> {
         .leftJoinAndSelect('idKey.idCarModel', 'idCarModel')
         .leftJoinAndSelect('idCarModel.idCarBrand', 'idCarBrand')
         .leftJoinAndSelect('service.idClient', 'idClient')
-        .where('date > :startDate AND date < :endDate', {
+        .where('date >= :startDate AND date <= :endDate', {
           startDate: query.startDate,
           endDate: query.endDate,
         }).getMany(),

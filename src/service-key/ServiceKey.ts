@@ -13,10 +13,6 @@ export class ServiceKey extends Base {
   @Column('double', { name: 'key_price', precision: 22 })
   keyPrice: number;
 
-  @Column('double', { name: 'key_purchase_price' })
-  keyPurchasePrice: number;
-
-
   @ManyToOne(() => Service, (service) => service.serviceKeys, {
     onDelete: 'CASCADE',
     onUpdate: 'NO ACTION',
