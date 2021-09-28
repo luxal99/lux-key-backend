@@ -52,7 +52,7 @@ export class KeyController extends GenericController<Key> {
 
     worksheet.addRows(JSON.parse(JSON.stringify(response)));
 
-    const date = moment().format('DD-MM-YYYY-HH:mm:ss');
+    const date = moment().format('DD-MM-YYYY');
     const path = REPORT_PATH + date + '.xlsx';
     workbook.xlsx.writeFile(path)
       .then(() => {

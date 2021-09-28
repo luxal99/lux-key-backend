@@ -13,7 +13,6 @@ export class Report extends Base {
   @Column('varchar', { name: 'path', length: 128 })
   path: string;
 
-
   constructor(path: string) {
     super();
     this.path = path;
