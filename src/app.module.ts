@@ -25,6 +25,7 @@ import { KeySubCategoryController } from './key-sub-category/key-sub-category.co
 import { ServiceKeyController } from './service-key/service-key.controller';
 import { ServiceController } from './service/service.controller';
 import { ReportModule } from './report/report.module';
+import { KeyBrandModule } from './key-brand/key-brand.module';
 
 @Module({
   imports: [
@@ -44,7 +45,7 @@ import { ReportModule } from './report/report.module';
     }),
     CarBrandModule, KeyModule, JwtModule,
     KeyCategoryModule, KeyPriceModule, KeySubCategoryModule, ServiceModule
-    , ServiceKeyModule, UserModule, ClientModule, ReportModule],
+    , ServiceKeyModule, UserModule, ClientModule, ReportModule, KeyBrandModule],
   controllers: [AppController],
   providers: [AppService],
 })
@@ -54,6 +55,6 @@ export class AppModule implements NestModule {
       { path: 'user/auth', method: RequestMethod.POST },
       { path: 'jwt', method: RequestMethod.GET },
     ).forRoutes(UserController, CarBrandController, ClientController, KeyController, KeyCategoryController,
-      KeyPriceController, KeySubCategoryController, ServiceKeyController, ServiceController);
+      KeyPriceController, KeySubCategoryController, ServiceKeyController, ServiceController, KeyBrandModule);
   }
 }

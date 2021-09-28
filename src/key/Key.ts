@@ -4,6 +4,7 @@ import { ServiceKey } from '../service-key/ServiceKey';
 import { Base } from '../generic/base.entity';
 import { KeySubCategory } from '../key-sub-category/KeySubCategory';
 import { CarBrand } from '../car-brand/CarBrand';
+import { KeyBrand } from '../key-brand/KeyBrand';
 
 @Index('code', ['code'], { unique: true })
 @Index('id_current_price', ['idCurrentPrice'], {})
@@ -43,6 +44,13 @@ export class Key extends Base {
   })
   @JoinColumn([{ name: 'id_key_sub_category', referencedColumnName: 'id' }])
   idKeySubCategory: KeySubCategory;
+
+  @ManyToOne(() => KeyBrand, (keyBrand) => keyBrand.keys, {
+    onDelete: 'NO ACTION',
+    onUpdate: 'NO ACTION',
+  })
+  @JoinColumn([{ name: 'id_key_brand', referencedColumnName: 'id' }])
+  idKeyBrand: KeyBrand;
 
   @ManyToMany(() => CarBrand)
   @JoinTable()
