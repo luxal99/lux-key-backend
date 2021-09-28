@@ -10,13 +10,6 @@ export class Service extends Base {
   @Column('date', { name: 'date' })
   date: string;
 
-  @Column('double', {
-    name: 'coding_service_price',
-    nullable: true,
-    precision: 22,
-  })
-  codingServicePrice: number | null;
-
   @Column('double', { name: 'gross', precision: 22 })
   gross: number;
 

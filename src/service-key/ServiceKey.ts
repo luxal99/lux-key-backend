@@ -27,12 +27,4 @@ export class ServiceKey extends Base {
   @JoinColumn([{ name: 'id_key', referencedColumnName: 'id' }])
   idKey: Key;
 
-
-  @Column({
-    type: 'enum',
-    array: true,
-    enum: ServiceType
-  })
-  serviceType: ServiceType;
-
 }
