@@ -11,9 +11,6 @@ import { KeyBrand } from '../key-brand/KeyBrand';
 @Entity('key', { schema: 'lux_key' })
 export class Key extends Base {
 
-  @Column('varchar', { name: 'name', length: 64 })
-  name: string;
-
   @Column('int', { name: 'amount', nullable: true })
   amount: number | null;
 
