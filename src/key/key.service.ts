@@ -8,7 +8,8 @@ import { Like } from 'typeorm';
 export class KeyService extends GenericService<Key> {
 
   constructor(private repository: KeyRepository) {
-    super(repository, ['idKeySubCategory', 'idCurrentPrice', 'keyPrices', 'serviceKeys', 'carBrands']);
+    super(repository, ['idKeySubCategory', 'idKeySubCategory.idKeyCategory',
+      'idCurrentPrice', 'keyPrices', 'serviceKeys', 'carBrands']);
   }
 
   async updateAmount(id: number, key: Key): Promise<void> {
