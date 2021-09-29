@@ -21,7 +21,7 @@ export class UserController {
         } else {
           const isPasswordValid = await bcrypt.compare(user.password, userByID.password);
           if (isPasswordValid) {
-            const token = jwt.sign({ username: userByID.username }, process.env.SECRET, { expiresIn: 60 * 60 * 3 });
+            const token = jwt.sign({ username: userByID.username }, process.env.SECRET, { expiresIn: 60 * 60 * 12 });
             resp.send(token);
           } else {
             resp.status(HttpStatus.FORBIDDEN).send({ message: 'Šifra nije validna' });

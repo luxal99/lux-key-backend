@@ -2,8 +2,6 @@ import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
 import { Service } from '../service/Service';
 import { Key } from '../key/Key';
 import { Base } from '../generic/base.entity';
-import { ApiProperty } from '@nestjs/swagger';
-import { ServiceType } from '../enum/ServiceType';
 
 @Index('id_service', ['idService'], {})
 @Index('id_key', ['idKey'], {})
