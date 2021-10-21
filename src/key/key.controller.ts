@@ -1,8 +1,8 @@
-import { Controller, Get, HttpStatus, Post, Query, Res } from '@nestjs/common';
+import { Controller, Get, HttpStatus, Post, Query, Req, Res } from '@nestjs/common';
 import { KeyService } from './key.service';
 import { GenericController } from '../generic/generic.controller';
 import { Key } from './Key';
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import * as excel from 'exceljs';
 import * as moment from 'moment';
@@ -59,6 +59,15 @@ export class KeyController extends GenericController<Key> {
         this.reportService.save(new Report(path));
         res.sendStatus(HttpStatus.CREATED);
       });
+  }
 
+  @Get('by-key-sub-category')
+  async getAllKeySubCategoryByKeyCategory(@Req() req: Request, @Res() res: Response) {
+    try {
+      // @ts-ignore
+      res.send(await this.keySubCategoryService.finByKeyCategory(req.query.idKeySubCategory));
+    } catch (err) {
+      res.status(HttpStatus.BAD_REQUEST).send({ err });
+    }
   }
 }

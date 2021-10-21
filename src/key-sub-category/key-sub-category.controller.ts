@@ -14,7 +14,6 @@ export class KeySubCategoryController extends GenericController<KeySubCategory> 
   async getAllKeySubCategoryByKeyCategory(@Req() req: Request, @Res() res: Response) {
     try {
       // @ts-ignore
-      // @ts-ignore
       res.send(await this.keySubCategoryService.finByKeyCategory(req.query.idKeyCategory));
     } catch (err) {
       res.status(HttpStatus.BAD_REQUEST).send({ err });

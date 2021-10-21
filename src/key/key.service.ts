@@ -9,7 +9,7 @@ export class KeyService extends GenericService<Key> {
 
   constructor(private repository: KeyRepository) {
     super(repository, ['idKeySubCategory', 'idKeySubCategory.idKeyCategory',
-      'idCurrentPrice', 'keyPrices', 'serviceKeys', 'carBrands','idKeyBrand']);
+      'idCurrentPrice', 'keyPrices', 'serviceKeys', 'carBrands', 'idKeyBrand']);
   }
 
   async updateAmount(id: number, key: Key): Promise<void> {
@@ -26,5 +26,9 @@ export class KeyService extends GenericService<Key> {
         where: { code: Like(`%${searchText}%`) }
         , relations: this.getRelations,
       });
+  }
+
+  async findKeysByKeySubCategory(idKeySubCategory): Promise<Key[]> {
+    return this.repository.find({ where: { idKeySubCategory }, relations: this.getRelations });
   }
 }
