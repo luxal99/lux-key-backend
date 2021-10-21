@@ -7,9 +7,13 @@ import { KeySubCategory } from './KeySubCategory';
 export class KeySubCategoryService extends GenericService<KeySubCategory> {
 
   constructor(private repository: KeySubCategoryRepository) {
-    super(repository, ['idKeyCategory','keys',
-      'keys.idCurrentPrice','keys.keyPrices','keys.carBrands',
-      'keys.idKeySubCategory','keys.idKeyBrand',
+    super(repository, ['idKeyCategory', 'keys',
+      'keys.idCurrentPrice', 'keys.keyPrices', 'keys.carBrands',
+      'keys.idKeySubCategory', 'keys.idKeyBrand',
       'keys.idKeySubCategory.idKeyCategory']);
+  }
+
+  async finByKeyCategory(idKeyCategory: number): Promise<KeySubCategory[]> {
+    return await this.repository.find({ where: { idKeyCategory }, relations: this.getRelations });
   }
 }
