@@ -63,11 +63,8 @@ export class KeyController extends GenericController<Key> {
 
   @Get('by-key-sub-category')
   async getAllKeySubCategoryByKeyCategory(@Req() req: Request, @Res() res: Response) {
-    try {
       // @ts-ignore
-      res.send(await this.keySubCategoryService.finByKeyCategory(req.query.idKeySubCategory));
-    } catch (err) {
-      res.status(HttpStatus.BAD_REQUEST).send({ err });
-    }
+      res.send(await this.keyService.findKeysByKeySubCategory(Number.parseInt(req.query.idKeySubCategory)));
+
   }
 }

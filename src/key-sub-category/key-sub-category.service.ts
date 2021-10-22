@@ -13,7 +13,7 @@ export class KeySubCategoryService extends GenericService<KeySubCategory> {
       'keys.idKeySubCategory.idKeyCategory']);
   }
 
-  async finByKeyCategory(idKeyCategory: number): Promise<KeySubCategory[]> {
+  async findByKeyCategory(idKeyCategory: number): Promise<KeySubCategory[]> {
     return await this.repository.find({ where: { idKeyCategory }, relations: this.getRelations });
   }
 }

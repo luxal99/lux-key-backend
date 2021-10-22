@@ -29,6 +29,7 @@ export class KeyService extends GenericService<Key> {
   }
 
   async findKeysByKeySubCategory(idKeySubCategory): Promise<Key[]> {
-    return this.repository.find({ where: { idKeySubCategory }, relations: this.getRelations });
+    const arr:Key[] = await this.repository.find({ where: { idKeySubCategory }, relations: this.getRelations });
+    return arr.reverse()
   }
 }
