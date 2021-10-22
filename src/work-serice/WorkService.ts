@@ -18,4 +18,11 @@ export class WorkService extends Base {
   })
   createdDate: Date | null;
 
+  @Column({
+    type: 'enum',
+    enum: ServiceType,
+  })
+  serviceType: ServiceType;
+
+
 }
