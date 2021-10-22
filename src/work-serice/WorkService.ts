@@ -5,7 +5,7 @@ import { ServiceType } from '../enum/ServiceType';
 @Entity('work_service', { schema: 'lux_key' })
 export class WorkService extends Base {
 
-  @Column({ name: 'price'})
+  @Column({ name: 'price' })
   price: number | null;
 
   @Column('varchar', { name: 'name', length: 64 })
@@ -21,6 +21,7 @@ export class WorkService extends Base {
   @Column({
     type: 'enum',
     enum: ServiceType,
+    default: ServiceType.USLUGA,
   })
   serviceType: ServiceType;
 
