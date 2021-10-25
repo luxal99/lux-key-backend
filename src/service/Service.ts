@@ -40,6 +40,6 @@ export class Service extends Base {
   @ManyToOne(type => WorkService, (workService) => workService.services)
   idWorkService: WorkService;
 
-  @Column({ type: 'longtext' })
+  @Column({ type: 'longtext', nullable: true })
   notes: string;
 }
