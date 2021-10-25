@@ -3,5 +3,5 @@ export enum ServiceType {
   'KODIRANJE' = 'KODIRANJE',
   'IZRADA I KODIRANJE' = 'IZRADA I KODIRANJE',
   'UGRADNJA' = 'UGRADNJA',
-  'POPRAVKA' = 'POPRAVKA',
+  'USLUGA' = 'USLUGA'
 }

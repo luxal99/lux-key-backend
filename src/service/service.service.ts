@@ -12,6 +12,7 @@ export class ServiceService extends GenericService<Service> {
       'serviceKeys.idKey.idKeySubCategory',
       'serviceKeys.idKey.idKeySubCategory.idKeyCategory',
       'serviceKeys.idKey.carBrands',
+      'serviceKeys.idWorkService',
       'serviceKeys.idKey.idKeyBrand']);
   }
 }

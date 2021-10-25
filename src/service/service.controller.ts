@@ -4,8 +4,7 @@ import { GenericController } from '../generic/generic.controller';
 import { Service } from './Service';
 import { Response } from 'express';
 import { KeyService } from '../key/key.service';
-import { EntityManager, getConnection, getManager, getRepository, In, LessThan, MoreThan } from 'typeorm';
-import { Raw } from 'typeorm/browser';
+import { getRepository } from 'typeorm';
 
 @Controller('service')
 export class ServiceController extends GenericController<Service> {
@@ -16,9 +15,14 @@ export class ServiceController extends GenericController<Service> {
   @Post()
   async post(@Body() entity: Service, @Res() res: Response): Promise<void> {
     try {
+      if (!entity.gross && entity.idWorkService) {
+        entity.gross = entity.idWorkService.price;
+      }
       await this.serviceService.save(entity).then(async (savedService) => {
-        for (const serviceKey of savedService.serviceKeys) {
-          await this.keyService.updateAmount(serviceKey.idKey.id, serviceKey.idKey);
+        if (entity.serviceKeys) {
+          for (const serviceKey of savedService.serviceKeys) {
+            await this.keyService.updateAmount(serviceKey.idKey.id, serviceKey.idKey);
+          }
         }
         res.send(savedService);
       });
@@ -38,6 +42,7 @@ export class ServiceController extends GenericController<Service> {
         .leftJoinAndSelect('idKey.idKeySubCategory', 'idKeySubCategory')
         .leftJoinAndSelect('idKeySubCategory.idKeyCategory', 'idKeyCategory')
         .leftJoinAndSelect('idKey.idKeyBrand', 'idKeyBrand')
+        .leftJoinAndSelect('service.idWorkService', 'idWorkService')
         .leftJoinAndSelect('service.idClient', 'idClient')
         .where('date >= :startDate AND date <= :endDate', {
           startDate: query.startDate,
