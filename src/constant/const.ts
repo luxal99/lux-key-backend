@@ -9,13 +9,14 @@ import { User } from '../user/User';
 import { Client } from '../client/Client';
 import { Report } from '../report/Report';
 import { KeyBrand } from '../key-brand/KeyBrand';
+import { WorkService } from '../work-service/WorkService';
 
 export const LIST_OF_ENTITIES = [
   CarBrand,
   Key, KeyCategory,
   KeySubCategory, Client, KeyPrice,
   Service, ServiceKey, User, Report,
-  KeyBrand,
+  KeyBrand,WorkService
 ];
 export const PASSWORD_REGEX = '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$';
 export const TOKEN_NAME = 'Authorization';

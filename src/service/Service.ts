@@ -1,8 +1,8 @@
 import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import { ServiceKey } from '../service-key/ServiceKey';
 import { Base } from '../generic/base.entity';
-import { ApiProperty } from '@nestjs/swagger';
 import { Client } from '../client/Client';
+import { WorkService } from 'src/work-service/WorkService';
 
 @Entity('service', { schema: 'lux_key' })
 export class Service extends Base {
@@ -36,6 +36,9 @@ export class Service extends Base {
 
   @ManyToOne(type => Client, (client) => client.services)
   idClient: Client;
+
+  @ManyToOne(type => WorkService, (workService) => workService.services)
+  idWorkService: WorkService;
 
   @Column({ type: 'longtext' })
   notes: string;
