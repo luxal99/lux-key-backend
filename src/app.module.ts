@@ -27,6 +27,7 @@ import { ServiceController } from './service/service.controller';
 import { ReportModule } from './report/report.module';
 import { KeyBrandModule } from './key-brand/key-brand.module';
 import { WorkServiceModule } from './work-service/work-service.module';
+import { MessageModule } from './message/message.module';
 
 @Module({
   imports: [
@@ -46,7 +47,7 @@ import { WorkServiceModule } from './work-service/work-service.module';
     }),
     CarBrandModule, KeyModule, JwtModule,
     KeyCategoryModule, KeyPriceModule, KeySubCategoryModule, ServiceModule
-    , ServiceKeyModule, UserModule, ClientModule, ReportModule, KeyBrandModule, WorkServiceModule],
+    , ServiceKeyModule, UserModule, ClientModule, ReportModule, KeyBrandModule, WorkServiceModule, MessageModule],
   controllers: [AppController],
   providers: [AppService],
 })
