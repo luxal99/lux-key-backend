@@ -7,7 +7,7 @@ import { MessageRepository } from './message.repository';
 export class MessageService extends GenericService<Message> {
 
   constructor(private repository: MessageRepository) {
-    super(repository, []);
+    super(repository, ['idClient']);
   }
 
 }
