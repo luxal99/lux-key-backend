@@ -1,12 +1,9 @@
 import { Base } from '../generic/base.entity';
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
-import { KeyBrand } from '../key-brand/KeyBrand';
 import { Client } from '../client/Client';
 
 @Entity()
 export class Message extends Base {
-
-
   @Column('timestamp', {
     name: 'created_date',
     nullable: true,
@@ -17,7 +14,11 @@ export class Message extends Base {
   @ManyToOne(() => Client, (client) => client.messages, {
     onDelete: 'NO ACTION',
     onUpdate: 'NO ACTION',
+    cascade:true
   })
   @JoinColumn([{ name: 'id_client', referencedColumnName: 'id' }])
-  idClient: KeyBrand;
+  idClient: Client;
+
+  @Column({ length: 10240 })
+  message: string;
 }

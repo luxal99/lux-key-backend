@@ -14,16 +14,15 @@ export class Client extends Base {
   lastName: string;
 
 
-  @Column({ nullable: false })
+  @Column({ nullable: true, unique: true })
   telephone: string;
 
   @OneToMany(type => Service, (service) => service.idClient)
   services: Service[];
 
   @OneToMany(() => Message, (message) => message.idClient, {
-    cascade: true,
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE',
+    onDelete: 'NO ACTION',
+    onUpdate: 'NO ACTION',
   })
   messages: Message[];
 }
