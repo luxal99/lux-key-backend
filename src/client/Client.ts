@@ -1,7 +1,7 @@
 import { Column, Entity, OneToMany } from 'typeorm';
 import { Base } from '../generic/base.entity';
 import { Service } from '../service/Service';
-import { ApiProperty } from '@nestjs/swagger';
+import { Message } from '../message/Message';
 
 @Entity()
 export class Client extends Base {
@@ -19,4 +19,11 @@ export class Client extends Base {
 
   @OneToMany(type => Service, (service) => service.idClient)
   services: Service[];
+
+  @OneToMany(() => Message, (message) => message.idClient, {
+    cascade: true,
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
+  messages: Message[];
 }
