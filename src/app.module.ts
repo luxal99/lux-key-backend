@@ -30,6 +30,7 @@ import { WorkServiceModule } from './work-service/work-service.module';
 import { MessageModule } from './message/message.module';
 import { KeyBrandController } from './key-brand/key-brand.controller';
 import { MessageController } from './message/message.controller';
+import { KeyImageModule } from './key-image/key-image.module';
 
 @Module({
   imports: [
@@ -49,7 +50,7 @@ import { MessageController } from './message/message.controller';
     }),
     CarBrandModule, KeyModule, JwtModule,
     KeyCategoryModule, KeyPriceModule, KeySubCategoryModule, ServiceModule
-    , ServiceKeyModule, UserModule, ClientModule, ReportModule, KeyBrandModule, WorkServiceModule, MessageModule],
+    , ServiceKeyModule, UserModule, ClientModule, ReportModule, KeyBrandModule, WorkServiceModule, MessageModule, KeyImageModule],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -5,6 +5,7 @@ import { Base } from '../generic/base.entity';
 import { KeySubCategory } from '../key-sub-category/KeySubCategory';
 import { CarBrand } from '../car-brand/CarBrand';
 import { KeyBrand } from '../key-brand/KeyBrand';
+import { KeyImage } from '../key-image/KeyImage';
 
 @Index('code', ['code'], { unique: true })
 @Index('id_current_price', ['idCurrentPrice'], {})
@@ -62,4 +63,8 @@ export class Key extends Base {
     onUpdate: 'CASCADE',
   })
   serviceKeys: ServiceKey[];
+
+  @OneToOne(() => KeyImage, profile => profile.idKey)
+  @JoinColumn()
+  idImage: KeyImage;
 }
