@@ -20,7 +20,7 @@ export class KeyImageController extends GenericController<KeyImage> {
   @UseInterceptors(
     FileInterceptor("image", {
       storage: diskStorage({
-        destination: "/home/luxal/PC/Project/LuxKey/lux-key-frontend/src/assets/img/uploads",
+        destination: process.env.UPLOAD_PATH,
         filename: (req, file, cb) => {
           const randomName = Array(32)
             .fill(null)
