@@ -13,7 +13,7 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
-    "build-prod": "sed -i 's/development/production/' ./src/constant/constant.ts && nest build && cp src/environments/.production.env dist/",
+    "build-prod": "sed -i 's/development/production/' ./src/constant/constant.ts && sed -i  's/mysql/mariadb ./src/app.module.ts' && nest build && cp src/environments/.production.env dist/",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
