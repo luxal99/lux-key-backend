@@ -34,7 +34,7 @@ export class RestRoutes {
   static JWT = "/jwt";
 }
 
-export const REPORT_PATH = process.env.REPORT_PATH;
+export const REPORT_PATH = "/home/luxal/PC/Project/LuxKey/lux-key-frontend/src/assets/reports/";
 export const CONFIG = ConfigModule.forRoot({
   isGlobal: true,
   envFilePath: "src/environments/.development.env"
