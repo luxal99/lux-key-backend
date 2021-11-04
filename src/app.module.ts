@@ -11,7 +11,7 @@ import { ServiceKeyModule } from "./service-key/service-key.module";
 import { UserModule } from "./user/user.module";
 import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { LIST_OF_ENTITIES } from "./constant/const";
+import { LIST_OF_ENTITIES } from "./constant/constant";
 import { JWTMiddle } from "./middleware/jwt.middle";
 import { JwtModule } from "./controller/jwt/jwt.module";
 import { ClientModule } from "./client/client.module";

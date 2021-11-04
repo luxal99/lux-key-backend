@@ -6,7 +6,7 @@ import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import * as excel from 'exceljs';
 import * as moment from 'moment';
-import { REPORT_PATH } from '../constant/const';
+import { REPORT_PATH } from '../constant/constant';
 import { ReportService } from '../report/report.service';
 import { Report } from '../report/Report';
 
