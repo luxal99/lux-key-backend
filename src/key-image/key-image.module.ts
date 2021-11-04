@@ -3,7 +3,6 @@ import { KeyImageService } from './key-image.service';
 import { KeyImageController } from './key-image.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { KeyImageRepository } from './key-image.repository';
-import { Key } from '../key/Key';
 import { KeyService } from '../key/key.service';
 import { KeyRepository } from '../key/key.repository';
 
