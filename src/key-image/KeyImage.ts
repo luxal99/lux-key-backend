@@ -9,7 +9,7 @@ export class KeyImage extends Base {
     nullable: true,
     default: () => 'CURRENT_TIMESTAMP',
   })
-  createdDate: Date | null;
+  createdDate?: Date | null;
 
   @Column({ nullable: false, unique: true })
   name: string;
