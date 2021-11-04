@@ -66,5 +66,5 @@ export class Key extends Base {
 
   @OneToOne(() => KeyImage, profile => profile.idKey)
   @JoinColumn()
-  idImage: KeyImage;
+  idKeyImage: KeyImage;
 }

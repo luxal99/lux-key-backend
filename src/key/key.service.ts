@@ -9,7 +9,8 @@ export class KeyService extends GenericService<Key> {
 
   constructor(private repository: KeyRepository) {
     super(repository, ['idKeySubCategory', 'idKeySubCategory.idKeyCategory',
-      'idCurrentPrice', 'keyPrices', 'serviceKeys', 'carBrands', 'idKeyBrand']);
+      'idCurrentPrice', 'keyPrices', 'serviceKeys', 'carBrands', 'idKeyBrand',
+    "idKeyImage"]);
   }
 
   async updateAmount(id: number, key: Key): Promise<void> {
