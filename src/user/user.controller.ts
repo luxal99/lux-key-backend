@@ -2,7 +2,7 @@ import { Body, Controller, HttpStatus, Post, Res } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from './User';
 import { Response } from 'express';
-import { PASSWORD_REGEX } from '../constant/const';
+import { PASSWORD_REGEX } from '../constant/constant';
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 
