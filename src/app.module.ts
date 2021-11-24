@@ -31,6 +31,7 @@ import { MessageModule } from "./message/message.module";
 import { KeyBrandController } from "./key-brand/key-brand.controller";
 import { MessageController } from "./message/message.controller";
 import { KeyImageModule } from "./key-image/key-image.module";
+import { AnalyticsModule } from './analytics/analytics.module';
 
 @Module({
   imports: [
@@ -51,7 +52,7 @@ import { KeyImageModule } from "./key-image/key-image.module";
     CarBrandModule, KeyModule, JwtModule,
     KeyCategoryModule, KeyPriceModule, KeySubCategoryModule, ServiceModule
     , ServiceKeyModule, UserModule, ClientModule, ReportModule, KeyBrandModule,
-    WorkServiceModule, MessageModule, KeyImageModule],
+    WorkServiceModule, MessageModule, KeyImageModule, AnalyticsModule],
   controllers: [AppController],
   providers: [AppService],
 })
