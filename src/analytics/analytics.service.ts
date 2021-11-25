@@ -1,14 +1,15 @@
 import { Injectable } from "@nestjs/common";
 import { PopularKeyDto } from "./models/PopularKeyDto";
 import { ServiceService } from "../service/service.service";
-import { EarningByKeySubCategory } from "./models/EarningByKeySubCategory";
+import { EarningByKeySubCategoryDto } from "./models/EarningByKeySubCategoryDto";
+import { AllTimeEarnedDto } from "./models/AllTimeEarnedDto";
 
 @Injectable()
 export class AnalyticsService {
   constructor(private serviceService: ServiceService) {
   }
 
-  async getAllTimeEarned(): Promise<number> {
+  async getAllTimeEarned(): Promise<AllTimeEarnedDto> {
     return await this.serviceService.genericRepository
       .createQueryBuilder("total").select("SUM(gross) as total").getRawOne();
 
@@ -23,7 +24,7 @@ export class AnalyticsService {
       .orderBy("COUNT(idKey.id)", "DESC").getRawMany();
   }
 
-  async getEarningByKeySubCategory(): Promise<EarningByKeySubCategory[]> {
+  async getEarningByKeySubCategory(): Promise<EarningByKeySubCategoryDto[]> {
     return await this.serviceService.genericRepository.createQueryBuilder("service")
       .leftJoinAndSelect("service.serviceKeys", "serviceKeys")
       .leftJoinAndSelect("serviceKeys.idKey", "idKey")
