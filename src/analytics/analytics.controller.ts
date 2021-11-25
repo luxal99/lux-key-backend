@@ -10,7 +10,7 @@ export class AnalyticsController {
   @Get("all-time-earned")
   async getAllTimeEarned(@Res() res: Response) {
     try {
-      res.send(await this.analyticsService.getEarningByKeySubCategory());
+      res.send(await this.analyticsService.getAllTimeEarned());
     } catch (err) {
       res.status(HttpStatus.BAD_REQUEST).send({ err });
     }
