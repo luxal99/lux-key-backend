@@ -33,4 +33,13 @@ export class AnalyticsController {
       res.status(HttpStatus.BAD_REQUEST).send({ err });
     }
   }
+
+  @Get("work-service-earning")
+  async getWorkServiceEarning(@Res() res: Response) {
+    try {
+      res.send(await this.analyticsService.getWorkServiceEarning());
+    } catch (err) {
+      res.status(HttpStatus.BAD_REQUEST).send({ err });
+    }
+  }
 }
