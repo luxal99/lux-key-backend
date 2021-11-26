@@ -31,7 +31,8 @@ import { MessageModule } from "./message/message.module";
 import { KeyBrandController } from "./key-brand/key-brand.controller";
 import { MessageController } from "./message/message.controller";
 import { KeyImageModule } from "./key-image/key-image.module";
-import { AnalyticsModule } from './analytics/analytics.module';
+import { AnalyticsModule } from "./analytics/analytics.module";
+import { AnalyticsController } from "./analytics/analytics.controller";
 
 @Module({
   imports: [
@@ -62,7 +63,7 @@ export class AppModule implements NestModule {
       { path: "user/auth", method: RequestMethod.POST },
       { path: "jwt", method: RequestMethod.GET },
       { path: "message", method: RequestMethod.POST },
-    ).forRoutes(UserController, CarBrandController,
+    ).forRoutes(AnalyticsController, UserController, CarBrandController,
       ClientController, KeyController, KeyCategoryController,
       KeyPriceController, KeySubCategoryController,
       ServiceKeyController, ServiceController,
