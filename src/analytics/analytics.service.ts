@@ -19,7 +19,8 @@ export class AnalyticsService {
     return await this.serviceService.genericRepository.createQueryBuilder("service")
       .leftJoinAndSelect("service.serviceKeys", "serviceKeys")
       .leftJoinAndSelect("serviceKeys.idKey", "idKey")
-      .select("idKey.id, idKey.code,COUNT(idKey.code) as count")
+      .leftJoinAndSelect("idKey.idCurrentPrice", "idCurrentPrice")
+      .select("idKey.id, idKey.code,idKey.amount,idCurrentPrice.price,COUNT(idKey.code) as count")
       .groupBy("idKey.code")
       .orderBy("COUNT(idKey.id)", "DESC").limit(5).getRawMany();
   }

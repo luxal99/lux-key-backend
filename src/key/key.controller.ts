@@ -85,7 +85,6 @@ export class KeyController extends GenericController<Key> {
       amount: item.amount,
     }));
 
-    console.log(response);
     let workbook = new excel.Workbook();
     let worksheet = workbook.addWorksheet("Izvestaj");
 

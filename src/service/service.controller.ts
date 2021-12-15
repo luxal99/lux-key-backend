@@ -14,7 +14,6 @@ export class ServiceController extends GenericController<Service> {
 
   @Post()
   async post(@Body() entity: Service, @Res() res: Response): Promise<void> {
-    try {
       if (!entity.gross && entity.idWorkService) {
         entity.gross = entity.idWorkService.price;
       }
@@ -26,9 +25,7 @@ export class ServiceController extends GenericController<Service> {
         }
         res.send(savedService);
       });
-    } catch (err) {
-      res.status(HttpStatus.BAD_REQUEST).send({ err });
-    }
+
   }
 
   @Get('')
