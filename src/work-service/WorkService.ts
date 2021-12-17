@@ -4,13 +4,12 @@ import { Service } from '../service/Service';
 
 @Entity()
 export class WorkService extends Base {
-
   @Column({ nullable: false })
   name: string;
 
   @Column({ nullable: false })
   price: number;
 
-  @OneToMany(type => Service, (service) => service.idWorkService)
+  @OneToMany((type) => Service, (service) => service.idWorkService)
   services: Service[];
 }

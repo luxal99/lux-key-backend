@@ -9,5 +9,5 @@ export interface GenericInterface<T> {
 
   delete(id: number);
 
-  deleteAll(ids:number[])
+  deleteAll(ids: number[]);
 }

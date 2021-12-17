@@ -5,7 +5,6 @@ import { KeyPriceRepository } from './key-price.repository';
 
 @Injectable()
 export class KeyPriceService extends GenericService<KeyPrice> {
-
   constructor(private repository: KeyPriceRepository) {
     super(repository, []);
   }

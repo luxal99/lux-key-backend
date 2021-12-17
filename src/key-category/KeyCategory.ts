@@ -5,7 +5,6 @@ import { ApiProperty } from '@nestjs/swagger';
 
 @Entity('key_category', { schema: 'lux_key' })
 export class KeyCategory extends Base {
-
   @Column('varchar', { name: 'name', length: 64 })
   name: string;
 

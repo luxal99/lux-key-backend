@@ -4,9 +4,8 @@ import { WorkService } from './WorkService';
 import { WorkServiceRepository } from './work-service.repository';
 
 @Injectable()
-export class WorkServiceService extends GenericService<WorkService>{
-
-  constructor(private repository:WorkServiceRepository) {
+export class WorkServiceService extends GenericService<WorkService> {
+  constructor(private repository: WorkServiceRepository) {
     super(repository, []);
   }
 }

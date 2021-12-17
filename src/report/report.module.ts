@@ -9,5 +9,4 @@ import { ReportRepository } from './report.repository';
   controllers: [ReportController],
   providers: [ReportService],
 })
-export class ReportModule {
-}
+export class ReportModule {}

@@ -3,7 +3,6 @@ import { Base } from '../generic/base.entity';
 import { Key } from '../key/Key';
 
 @Entity('key_brand', { schema: 'lux_key' })
-
 export class KeyBrand extends Base {
   @Column('varchar', { name: 'name', length: 64 })
   name: string;

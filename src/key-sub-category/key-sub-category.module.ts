@@ -9,5 +9,4 @@ import { KeySubCategoryRepository } from './key-sub-category.repository';
   controllers: [KeySubCategoryController],
   providers: [KeySubCategoryService],
 })
-export class KeySubCategoryModule {
-}
+export class KeySubCategoryModule {}

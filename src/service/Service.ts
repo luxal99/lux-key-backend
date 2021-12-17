@@ -6,7 +6,6 @@ import { WorkService } from 'src/work-service/WorkService';
 
 @Entity('service', { schema: 'lux_key' })
 export class Service extends Base {
-
   @Column('date', { name: 'date' })
   date: string;
 
@@ -34,10 +33,10 @@ export class Service extends Base {
   })
   serviceKeys: ServiceKey[];
 
-  @ManyToOne(type => Client, (client) => client.services)
+  @ManyToOne((type) => Client, (client) => client.services)
   idClient: Client;
 
-  @ManyToOne(type => WorkService, (workService) => workService.services)
+  @ManyToOne((type) => WorkService, (workService) => workService.services)
   idWorkService: WorkService;
 
   @Column({ type: 'longtext', nullable: true })

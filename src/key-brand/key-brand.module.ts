@@ -9,5 +9,4 @@ import { KeyBrandRepository } from './key-brand.repository';
   controllers: [KeyBrandController],
   providers: [KeyBrandService],
 })
-export class KeyBrandModule {
-}
+export class KeyBrandModule {}

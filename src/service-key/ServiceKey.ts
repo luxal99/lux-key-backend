@@ -7,7 +7,6 @@ import { Base } from '../generic/base.entity';
 @Index('id_key', ['idKey'], {})
 @Entity('service_key', { schema: 'lux_key' })
 export class ServiceKey extends Base {
-
   @Column('double', { name: 'key_price', precision: 22 })
   keyPrice: number;
 
@@ -24,5 +23,4 @@ export class ServiceKey extends Base {
   })
   @JoinColumn([{ name: 'id_key', referencedColumnName: 'id' }])
   idKey: Key;
-
 }

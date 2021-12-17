@@ -4,7 +4,6 @@ import { Key } from '../key/Key';
 
 @Entity('car_brand', { schema: 'lux_key' })
 export class CarBrand extends Base {
-
   @Column('varchar', { name: 'name', length: 64 })
   name: string;
 
@@ -21,5 +20,4 @@ export class CarBrand extends Base {
     default: () => 'CURRENT_TIMESTAMP',
   })
   lastModifiedDate: Date | null;
-
 }

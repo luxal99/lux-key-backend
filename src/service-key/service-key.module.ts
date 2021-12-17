@@ -9,5 +9,4 @@ import { ServiceKeyRepository } from './service-key.repository';
   controllers: [ServiceKeyController],
   providers: [ServiceKeyService],
 })
-export class ServiceKeyModule {
-}
+export class ServiceKeyModule {}

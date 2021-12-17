@@ -5,19 +5,16 @@ import { Message } from '../message/Message';
 
 @Entity()
 export class Client extends Base {
-
   @Column({ nullable: false })
   firstName: string;
-
 
   @Column({ nullable: false })
   lastName: string;
 
-
   @Column({ nullable: true, unique: true })
   telephone: string;
 
-  @OneToMany(type => Service, (service) => service.idClient)
+  @OneToMany((type) => Service, (service) => service.idClient)
   services: Service[];
 
   @OneToMany(() => Message, (message) => message.idClient, {

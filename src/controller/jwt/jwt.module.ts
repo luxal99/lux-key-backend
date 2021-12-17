@@ -4,5 +4,4 @@ import { JwtController } from './jwt.controller';
 @Module({
   controllers: [JwtController],
 })
-export class JwtModule {
-}
+export class JwtModule {}

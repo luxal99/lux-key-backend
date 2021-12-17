@@ -7,9 +7,8 @@ import { ClientService } from '../client/client.service';
 import { ClientRepository } from '../client/client.repository';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([MessageRepository,ClientRepository])],
+  imports: [TypeOrmModule.forFeature([MessageRepository, ClientRepository])],
   controllers: [MessageController],
-  providers: [MessageService,ClientService],
+  providers: [MessageService, ClientService],
 })
-export class MessageModule {
-}
+export class MessageModule {}

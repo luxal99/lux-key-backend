@@ -9,5 +9,4 @@ import { KeyPriceRepository } from './key-price.repository';
   controllers: [KeyPriceController],
   providers: [KeyPriceService],
 })
-export class KeyPriceModule {
-}
+export class KeyPriceModule {}

@@ -8,14 +8,20 @@ import { Client } from '../client/Client';
 
 @Controller('message')
 export class MessageController extends GenericController<Message> {
-  constructor(private readonly messageService: MessageService, private clientService: ClientService) {
+  constructor(
+    private readonly messageService: MessageService,
+    private clientService: ClientService,
+  ) {
     super(messageService);
   }
 
   @Post()
   async post(@Body() message: Message, @Res() res: Response) {
     try {
-      const clientByTelephone: Client = await this.clientService.findClientByTelephone(message.idClient.telephone);
+      const clientByTelephone: Client =
+        await this.clientService.findClientByTelephone(
+          message.idClient.telephone,
+        );
       if (clientByTelephone) {
         message.idClient = clientByTelephone;
       }

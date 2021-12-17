@@ -1,4 +1,4 @@
-export interface PaginationDto{
-  rows:number;
-  page:number
+export interface PaginationDto {
+  rows: number;
+  page: number;
 }

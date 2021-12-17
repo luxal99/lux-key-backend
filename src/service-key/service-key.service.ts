@@ -1,14 +1,13 @@
-import { Injectable } from "@nestjs/common";
-import { GenericService } from "../generic/generic.service";
-import { ServiceKey } from "./ServiceKey";
-import { ServiceKeyRepository } from "./service-key.repository";
-import { Service } from "../service/Service";
+import { Injectable } from '@nestjs/common';
+import { GenericService } from '../generic/generic.service';
+import { ServiceKey } from './ServiceKey';
+import { ServiceKeyRepository } from './service-key.repository';
+import { Service } from '../service/Service';
 
 @Injectable()
 export class ServiceKeyService extends GenericService<ServiceKey> {
-
   constructor(genericRepository: ServiceKeyRepository) {
-    super(genericRepository, ["idKey", "idKey.idCurrentPrice"]);
+    super(genericRepository, ['idKey', 'idKey.idCurrentPrice']);
   }
 
   // async getServiceByDate(query: any): Promise<[Service[], number]> {

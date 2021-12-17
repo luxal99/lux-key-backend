@@ -5,7 +5,6 @@ import { KeyCategoryRepository } from './key-category.repository';
 
 @Injectable()
 export class KeyCategoryService extends GenericService<KeyCategory> {
-
   constructor(private repository: KeyCategoryRepository) {
     super(repository, ['keySubCategories']);
   }

@@ -11,10 +11,17 @@ export class KeySubCategoryController extends GenericController<KeySubCategory> 
   }
 
   @Get('by-key-category')
-  async getAllKeySubCategoryByKeyCategory(@Req() req: Request, @Res() res: Response) {
+  async getAllKeySubCategoryByKeyCategory(
+    @Req() req: Request,
+    @Res() res: Response,
+  ) {
     try {
       // @ts-ignore
-      res.send(await this.keySubCategoryService.findByKeyCategory(req.query.idKeyCategory));
+      res.send(
+        await this.keySubCategoryService.findByKeyCategory(
+          req.query.idKeyCategory,
+        ),
+      );
     } catch (err) {
       res.status(HttpStatus.BAD_REQUEST).send({ err });
     }

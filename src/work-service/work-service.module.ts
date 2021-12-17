@@ -9,5 +9,4 @@ import { WorkServiceRepository } from './work-service.repository';
   controllers: [WorkServiceController],
   providers: [WorkServiceService],
 })
-export class WorkServiceModule {
-}
+export class WorkServiceModule {}

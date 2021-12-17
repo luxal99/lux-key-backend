@@ -9,5 +9,4 @@ import { CarBrandRepository } from './car-brand.repository';
   controllers: [CarBrandController],
   providers: [CarBrandService],
 })
-export class CarBrandModule {
-}
+export class CarBrandModule {}

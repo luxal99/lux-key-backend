@@ -11,5 +11,4 @@ import { KeyRepository } from '../key/key.repository';
   controllers: [KeyImageController],
   providers: [KeyImageService, KeyService],
 })
-export class KeyImageModule {
-}
+export class KeyImageModule {}

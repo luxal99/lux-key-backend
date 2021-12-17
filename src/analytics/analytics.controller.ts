@@ -1,13 +1,12 @@
-import { Controller, Get, HttpStatus, Res } from "@nestjs/common";
-import { AnalyticsService } from "./analytics.service";
-import { Response } from "express";
+import { Controller, Get, HttpStatus, Res } from '@nestjs/common';
+import { AnalyticsService } from './analytics.service';
+import { Response } from 'express';
 
-@Controller("analytics")
+@Controller('analytics')
 export class AnalyticsController {
-  constructor(private readonly analyticsService: AnalyticsService) {
-  }
+  constructor(private readonly analyticsService: AnalyticsService) {}
 
-  @Get("all-time-earned")
+  @Get('all-time-earned')
   async getAllTimeEarned(@Res() res: Response) {
     try {
       res.send(await this.analyticsService.getAllTimeEarned());
@@ -16,7 +15,7 @@ export class AnalyticsController {
     }
   }
 
-  @Get("earning-by-key-sub-category")
+  @Get('earning-by-key-sub-category')
   async getEarningByKeySubCategory(@Res() res: Response) {
     try {
       res.send(await this.analyticsService.getEarningByKeySubCategory());
@@ -25,7 +24,7 @@ export class AnalyticsController {
     }
   }
 
-  @Get("top-five")
+  @Get('top-five')
   async getTopFivePopularKeys(@Res() res: Response) {
     try {
       res.send(await this.analyticsService.getTopFivePopularKeys());
@@ -34,7 +33,7 @@ export class AnalyticsController {
     }
   }
 
-  @Get("work-service-earning")
+  @Get('work-service-earning')
   async getWorkServiceEarning(@Res() res: Response) {
     try {
       res.send(await this.analyticsService.getWorkServiceEarning());
@@ -43,7 +42,7 @@ export class AnalyticsController {
     }
   }
 
-  @Get("earnings-by-month")
+  @Get('earnings-by-month')
   async getEarningsByMonth(@Res() res: Response) {
     try {
       res.send(await this.analyticsService.getEarningsByMonth());

@@ -9,5 +9,4 @@ import { ClientRepository } from './client.repository';
   controllers: [ClientController],
   providers: [ClientService],
 })
-export class ClientModule {
-}
+export class ClientModule {}

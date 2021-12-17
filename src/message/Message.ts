@@ -14,7 +14,7 @@ export class Message extends Base {
   @ManyToOne(() => Client, (client) => client.messages, {
     onDelete: 'NO ACTION',
     onUpdate: 'NO ACTION',
-    cascade:true
+    cascade: true,
   })
   @JoinColumn([{ name: 'id_client', referencedColumnName: 'id' }])
   idClient: Client;

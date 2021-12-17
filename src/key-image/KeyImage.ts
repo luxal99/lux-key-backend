@@ -17,6 +17,6 @@ export class KeyImage extends Base {
   @Column({ nullable: false, unique: true })
   url: string;
 
-  @OneToOne(() => Key, user => user.idKeyImage)
+  @OneToOne(() => Key, (user) => user.idKeyImage)
   idKey: Key;
 }

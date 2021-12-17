@@ -6,7 +6,6 @@ import * as fs from 'fs';
 
 @Injectable()
 export class ReportService extends GenericService<Report> {
-
   constructor(private repository: ReportRepository) {
     super(repository, []);
   }
