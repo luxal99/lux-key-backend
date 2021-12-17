@@ -58,7 +58,8 @@ export class AnalyticsService {
     return await this.serviceService.genericRepository
       .createQueryBuilder("service")
       .select("SUM(service.gross) as total,MONTHNAME(service.createdDate) as month")
-      .groupBy("MONTHNAME(service.createdDate)")
+      .groupBy("MONTH(service.createdDate)")
+      .orderBy("MONTH(service.createdDate)", "ASC")
       .getRawMany();
   }
 }
