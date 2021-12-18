@@ -5,6 +5,7 @@ import { ServiceRepository } from './service.repository';
 import { Query } from '../models/Query';
 import { DateDto } from '../models/DateDto';
 import { AllTimeEarnedDto } from '../analytics/models/AllTimeEarnedDto';
+import { Key } from "../key/Key";
 
 @Injectable()
 export class ServiceService extends GenericService<Service> {
@@ -54,4 +55,5 @@ export class ServiceService extends GenericService<Service> {
       })
       .getRawOne();
   }
+
 }

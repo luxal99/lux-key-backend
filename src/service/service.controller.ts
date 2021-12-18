@@ -9,6 +9,7 @@ import { DateDto } from "../models/DateDto";
 import { PaginationDto } from "../models/PaginationDto";
 import { SortDto } from "../models/SortDto";
 import { AllTimeEarnedDto } from "../analytics/models/AllTimeEarnedDto";
+import { ServiceKeyDto } from "../models/ServiceKeyDto";
 
 @Controller("service")
 export class ServiceController extends GenericController<Service> {
@@ -24,23 +25,17 @@ export class ServiceController extends GenericController<Service> {
     if (!entity.gross && entity.idWorkService) {
       entity.gross = entity.idWorkService.price;
     }
-    const serviceKeysDto = entity.serviceKeys;
-    let serviceKeys = [];
-    entity.serviceKeys.forEach((item) => {
-      for (let i = 0; i < item.decrement; i++) {
-        serviceKeys.push({ idKey: item.idKey, keyPrice: item.keyPrice });
-      }
-    });
 
-    entity.serviceKeys = serviceKeys;
+    const serviceKeysDto: ServiceKeyDto[] = [...new Map(entity.serviceKeys.map((item) => ({
+      id: item.idKey.id,
+      amount: item.idKey.amount,
+      decrement: this.keyService.countOccurrence(item.idKey, entity.serviceKeys),
+    })).map(item => [item["id"], item])).values()];
+
     await this.serviceService.save(entity).then(async (savedService) => {
       if (entity.serviceKeys) {
         for (const serviceKey of serviceKeysDto) {
-          await this.keyService.updateAmount({
-            id: serviceKey.idKey,
-            decrement: serviceKey.decrement,
-            amount: serviceKey.amount,
-          });
+          await this.keyService.updateAmount(serviceKey);
         }
       }
       res.send(savedService);

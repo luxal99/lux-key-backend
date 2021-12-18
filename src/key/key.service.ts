@@ -5,6 +5,7 @@ import { KeyRepository } from "./key.repository";
 import { Like } from "typeorm";
 import { KeyImageService } from "../key-image/key-image.service";
 import { ServiceKeyDto } from "src/models/ServiceKeyDto";
+import { ServiceKey } from "../service-key/ServiceKey";
 
 @Injectable()
 export class KeyService extends GenericService<Key> {
@@ -51,5 +52,9 @@ export class KeyService extends GenericService<Key> {
       relations: this.getRelations,
     });
     return arr.reverse();
+  }
+
+  countOccurrence(key: Key, listOfKeys: ServiceKey[]): number {
+    return listOfKeys.filter((item) => item.idKey.id === key.id).length;
   }
 }
