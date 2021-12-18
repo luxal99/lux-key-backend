@@ -1,16 +1,17 @@
-import { Body, Controller, Get, HttpStatus, Post, Res } from '@nestjs/common';
-import { ServiceService } from './service.service';
-import { GenericController } from '../generic/generic.controller';
-import { Service } from './Service';
-import { Response } from 'express';
-import { KeyService } from '../key/key.service';
-import { DateQuery, Pagination, Sort } from '../annotations/annotations';
-import { DateDto } from '../models/DateDto';
-import { PaginationDto } from '../models/PaginationDto';
-import { SortDto } from '../models/SortDto';
-import { AllTimeEarnedDto } from '../analytics/models/AllTimeEarnedDto';
+import { Body, Controller, Get, HttpStatus, Post, Res } from "@nestjs/common";
+import { ServiceService } from "./service.service";
+import { GenericController } from "../generic/generic.controller";
+import { Service } from "./Service";
+import { Response } from "express";
+import { KeyService } from "../key/key.service";
+import { DateQuery, Pagination, Sort } from "../annotations/annotations";
+import { DateDto } from "../models/DateDto";
+import { PaginationDto } from "../models/PaginationDto";
+import { SortDto } from "../models/SortDto";
+import { AllTimeEarnedDto } from "../analytics/models/AllTimeEarnedDto";
+import { ServiceKey } from "../service-key/ServiceKey";
 
-@Controller('service')
+@Controller("service")
 export class ServiceController extends GenericController<Service> {
   constructor(
     private readonly serviceService: ServiceService,
@@ -24,12 +25,23 @@ export class ServiceController extends GenericController<Service> {
     if (!entity.gross && entity.idWorkService) {
       entity.gross = entity.idWorkService.price;
     }
+    const serviceKeysDto = entity.serviceKeys;
+    const serviceKeys = []
+    entity.serviceKeys.forEach((item) => {
+      for (let i = 0; i < item.decrement; i++) {
+        const serviceKey = new ServiceKey();
+        serviceKey.idKey = item.id;
+        serviceKey.keyPrice = item.keyPrice;
+        serviceKeys.push(serviceKey);
+      }
+    });
+
+    entity.serviceKeys = serviceKeys
     await this.serviceService.save(entity).then(async (savedService) => {
       if (entity.serviceKeys) {
-        for (const serviceKey of savedService.serviceKeys) {
+        for (const serviceKey of serviceKeysDto) {
           await this.keyService.updateAmount(
-            serviceKey.idKey.id,
-            serviceKey.idKey,
+            { id: serviceKey.id, decrement: serviceKey.decrement, amount: serviceKey.amount }
           );
         }
       }
@@ -37,7 +49,7 @@ export class ServiceController extends GenericController<Service> {
     });
   }
 
-  @Get('')
+  @Get("")
   async getByParam(
     @DateQuery() dateQuery: DateDto,
     @Res() res: Response,
@@ -55,12 +67,12 @@ export class ServiceController extends GenericController<Service> {
       const dataCount = serviceByQuery[1];
       const sumGrossOfQuery: AllTimeEarnedDto =
         await this.serviceService.sumGrossByQuery(dateQuery);
-      res.header('DATA_COUNT', JSON.stringify(dataCount));
+      res.header("DATA_COUNT", JSON.stringify(dataCount));
       res.header(
-        'NUMBER_OF_PAGES',
+        "NUMBER_OF_PAGES",
         JSON.stringify(Math.ceil(dataCount / pagination.rows)),
       );
-      res.header('SUM', JSON.stringify(sumGrossOfQuery.total));
+      res.header("SUM", JSON.stringify(sumGrossOfQuery.total));
       res.send(serviceByQuery[0]);
     } catch (err) {
       res.status(HttpStatus.BAD_REQUEST).send({ err });

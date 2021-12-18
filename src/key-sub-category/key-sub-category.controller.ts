@@ -16,9 +16,9 @@ export class KeySubCategoryController extends GenericController<KeySubCategory> 
     @Res() res: Response,
   ) {
     try {
-      // @ts-ignore
       res.send(
         await this.keySubCategoryService.findByKeyCategory(
+          // @ts-ignore
           req.query.idKeyCategory,
         ),
       );

@@ -1,9 +1,10 @@
-import { Injectable } from '@nestjs/common';
-import { GenericService } from '../generic/generic.service';
-import { Key } from './Key';
-import { KeyRepository } from './key.repository';
-import { Like } from 'typeorm';
-import { KeyImageService } from '../key-image/key-image.service';
+import { Injectable } from "@nestjs/common";
+import { GenericService } from "../generic/generic.service";
+import { Key } from "./Key";
+import { KeyRepository } from "./key.repository";
+import { Like } from "typeorm";
+import { KeyImageService } from "../key-image/key-image.service";
+import { ServiceKeyDto } from "src/models/ServiceKeyDto";
 
 @Injectable()
 export class KeyService extends GenericService<Key> {
@@ -12,20 +13,20 @@ export class KeyService extends GenericService<Key> {
     private keyImageService: KeyImageService,
   ) {
     super(repository, [
-      'idKeySubCategory',
-      'idKeySubCategory.idKeyCategory',
-      'idCurrentPrice',
-      'keyPrices',
-      'serviceKeys',
-      'carBrands',
-      'idKeyBrand',
-      'idKeyImage',
+      "idKeySubCategory",
+      "idKeySubCategory.idKeyCategory",
+      "idCurrentPrice",
+      "keyPrices",
+      "serviceKeys",
+      "carBrands",
+      "idKeyBrand",
+      "idKeyImage",
     ]);
   }
 
-  async updateAmount(id: number, key: Key): Promise<void> {
+  async updateAmount(serviceKeyDto: ServiceKeyDto): Promise<void> {
     try {
-      await this.repository.update(id, { amount: key.amount - 1 });
+      await this.repository.update(serviceKeyDto.id, { amount: serviceKeyDto.amount - serviceKeyDto.decrement });
     } catch (err) {
       throw new Error(err);
     }
