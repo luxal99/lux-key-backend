@@ -28,7 +28,7 @@ export class ServiceController extends GenericController<Service> {
     let serviceKeys = [];
     entity.serviceKeys.forEach((item) => {
       for (let i = 0; i < item.decrement; i++) {
-        serviceKeys.push({ idKey: item.id, keyPrice: item.keyPrice });
+        serviceKeys.push({ idKey: item.idKey, keyPrice: item.keyPrice });
       }
     });
 
@@ -36,9 +36,11 @@ export class ServiceController extends GenericController<Service> {
     await this.serviceService.save(entity).then(async (savedService) => {
       if (entity.serviceKeys) {
         for (const serviceKey of serviceKeysDto) {
-          await this.keyService.updateAmount(
-            { id: serviceKey.id, decrement: serviceKey.decrement, amount: serviceKey.amount }
-          );
+          await this.keyService.updateAmount({
+            id: serviceKey.idKey,
+            decrement: serviceKey.decrement,
+            amount: serviceKey.amount,
+          });
         }
       }
       res.send(savedService);
