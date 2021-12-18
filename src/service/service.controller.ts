@@ -9,7 +9,6 @@ import { DateDto } from "../models/DateDto";
 import { PaginationDto } from "../models/PaginationDto";
 import { SortDto } from "../models/SortDto";
 import { AllTimeEarnedDto } from "../analytics/models/AllTimeEarnedDto";
-import { ServiceKey } from "../service-key/ServiceKey";
 
 @Controller("service")
 export class ServiceController extends GenericController<Service> {
@@ -26,17 +25,14 @@ export class ServiceController extends GenericController<Service> {
       entity.gross = entity.idWorkService.price;
     }
     const serviceKeysDto = entity.serviceKeys;
-    const serviceKeys = []
+    let serviceKeys = [];
     entity.serviceKeys.forEach((item) => {
       for (let i = 0; i < item.decrement; i++) {
-        const serviceKey = new ServiceKey();
-        serviceKey.idKey = item.id;
-        serviceKey.keyPrice = item.keyPrice;
-        serviceKeys.push(serviceKey);
+        serviceKeys.push({ idKey: item.id, keyPrice: item.keyPrice });
       }
     });
 
-    entity.serviceKeys = serviceKeys
+    entity.serviceKeys = serviceKeys;
     await this.serviceService.save(entity).then(async (savedService) => {
       if (entity.serviceKeys) {
         for (const serviceKey of serviceKeysDto) {
