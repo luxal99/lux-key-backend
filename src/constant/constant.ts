@@ -1,17 +1,17 @@
-import { CarBrand } from '../car-brand/CarBrand';
-import { Key } from '../key/Key';
-import { KeyCategory } from '../key-category/KeyCategory';
-import { KeySubCategory } from '../key-sub-category/KeySubCategory';
-import { KeyPrice } from '../key-price/KeyPrice';
-import { Service } from '../service/Service';
-import { ServiceKey } from '../service-key/ServiceKey';
-import { User } from '../user/User';
-import { Client } from '../client/Client';
-import { Report } from '../report/Report';
-import { KeyBrand } from '../key-brand/KeyBrand';
-import { WorkService } from '../work-service/WorkService';
-import { Message } from '../message/Message';
-import { KeyImage } from '../key-image/KeyImage';
+import { CarBrand } from '../resources/car-brand/CarBrand';
+import { Key } from '../resources/key/Key';
+import { KeyCategory } from '../resources/key-category/KeyCategory';
+import { KeySubCategory } from '../resources/key-sub-category/KeySubCategory';
+import { KeyPrice } from '../resources/key-price/KeyPrice';
+import { Service } from '../resources/service/Service';
+import { ServiceKey } from '../resources/service-key/ServiceKey';
+import { User } from '../resources/user/User';
+import { Client } from '../resources/client/Client';
+import { Report } from '../resources/report/Report';
+import { KeyBrand } from '../resources/key-brand/KeyBrand';
+import { WorkService } from '../resources/work-service/WorkService';
+import { Message } from '../resources/message/Message';
+import { KeyImage } from '../resources/key-image/KeyImage';
 import { ConfigModule } from '@nestjs/config';
 
 export const LIST_OF_ENTITIES = [
