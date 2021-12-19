@@ -18,7 +18,6 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { LIST_OF_ENTITIES } from './constant/constant';
 import { JWTMiddle } from './middleware/jwt.middle';
-import { JwtModule } from './controller/jwt/jwt.module';
 import { ClientModule } from './resources/client/client.module';
 import { UserController } from './resources/user/user.controller';
 import { CarBrandController } from './resources/car-brand/car-brand.controller';
@@ -57,7 +56,6 @@ import { AnalyticsController } from './resources/analytics/analytics.controller'
     }),
     CarBrandModule,
     KeyModule,
-    JwtModule,
     KeyCategoryModule,
     KeyPriceModule,
     KeySubCategoryModule,
