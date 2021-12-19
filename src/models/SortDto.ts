@@ -3,4 +3,4 @@ export interface SortDto {
   columnName: string;
 }
 
-type SortType = "ASC" | "DESC"
+type SortType = 'ASC' | 'DESC';
