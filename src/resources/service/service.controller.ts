@@ -26,11 +26,14 @@ export class ServiceController extends GenericController<Service> {
       entity.gross = entity.idWorkService.price;
     }
 
-    const serviceKeysDto: ServiceKeyDto[] = [...new Map(entity.serviceKeys.map((item) => ({
-      id: item.idKey.id,
-      amount: item.idKey.amount,
-      decrement: this.keyService.countOccurrence(item.idKey, entity.serviceKeys),
-    })).map(item => [item["id"], item])).values()];
+    let serviceKeysDto: ServiceKeyDto[] = [];
+    if (!entity.idWorkService){
+      serviceKeysDto = [...new Map(entity.serviceKeys.map((item) => ({
+        id: item.idKey.id,
+        amount: item.idKey.amount,
+        decrement: this.keyService.countOccurrence(item.idKey, entity.serviceKeys),
+      })).map(item => [item["id"], item])).values()];
+    }
 
     await this.serviceService.save(entity).then(async (savedService) => {
       if (entity.serviceKeys) {
