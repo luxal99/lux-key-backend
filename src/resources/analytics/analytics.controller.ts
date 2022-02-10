@@ -44,10 +44,8 @@ export class AnalyticsController {
 
   @Get('earnings-by-month')
   async getEarningsByMonth(@Res() res: Response) {
-    try {
+
       res.send(await this.analyticsService.getEarningsByMonth());
-    } catch (err) {
-      res.status(HttpStatus.BAD_REQUEST).send({ err });
-    }
+
   }
 }
