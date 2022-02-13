@@ -63,7 +63,7 @@ export class AnalyticsService {
         'SUM(service.gross) as total,MONTHNAME(service.createdDate) as month',
       )
       .groupBy('MONTH(service.createdDate)')
-      .orderBy('YEAR(service.createdDate)', 'ASC')
+      .orderBy('YEAR(service.createdDate),MONTH(service.createdDate)', 'ASC')
       .getRawMany();
   }
 }
