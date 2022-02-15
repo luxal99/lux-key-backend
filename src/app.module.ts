@@ -50,7 +50,7 @@ import { AnalyticsController } from './resources/analytics/analytics.controller'
       username: 'root',
       password: process.env.PASSWORD,
       database: process.env.DATABASE_NAME,
-      synchronize: true,
+      synchronize: false,
       logging: false,
       entities: LIST_OF_ENTITIES,
     }),
