@@ -1,21 +1,29 @@
-import { Body, Controller, Get, HttpStatus, Post, Res } from "@nestjs/common";
+import { Body, Controller, Get, HttpStatus, Post, Req, Res, } from "@nestjs/common";
 import { ServiceService } from "./service.service";
 import { GenericController } from "../../generic/generic.controller";
 import { Service } from "./Service";
-import { Response } from "express";
+import { Request, Response } from "express";
 import { KeyService } from "../key/key.service";
-import { DateQuery, Pagination, Sort } from "../../annotations/annotations";
+import { DateQuery, Pagination, ReportQuery, Sort, } from "../../annotations/annotations";
 import { DateDto } from "../../models/DateDto";
 import { PaginationDto } from "../../models/PaginationDto";
 import { SortDto } from "../../models/SortDto";
 import { AllTimeEarnedDto } from "../analytics/models/AllTimeEarnedDto";
 import { ServiceKeyDto } from "../../models/ServiceKeyDto";
+import { BuiltInReportDto } from "../../models/BuiltInReportDto";
+import * as excel from "exceljs";
+import * as moment from "moment";
+import { REPORT_PATH } from "../../constant/constant";
+import { Report } from "../report/Report";
+import { ReportTypeEnum } from "../../enum/ReportTypeEnum.enum";
+import { ReportService } from "../report/report.service";
 
 @Controller("service")
 export class ServiceController extends GenericController<Service> {
   constructor(
     private readonly serviceService: ServiceService,
     private keyService: KeyService,
+    private reportService: ReportService
   ) {
     super(serviceService);
   }
@@ -27,12 +35,21 @@ export class ServiceController extends GenericController<Service> {
     }
 
     let serviceKeysDto: ServiceKeyDto[] = [];
-    if (!entity.idWorkService){
-      serviceKeysDto = [...new Map(entity.serviceKeys.map((item) => ({
-        id: item.idKey.id,
-        amount: item.idKey.amount,
-        decrement: this.keyService.countOccurrence(item.idKey, entity.serviceKeys),
-      })).map(item => [item["id"], item])).values()];
+    if (!entity.idWorkService) {
+      serviceKeysDto = [
+        ...new Map(
+          entity.serviceKeys
+            .map((item) => ({
+              id: item.idKey.id,
+              amount: item.idKey.amount,
+              decrement: this.keyService.countOccurrence(
+                item.idKey,
+                entity.serviceKeys,
+              ),
+            }))
+            .map((item) => [item["id"], item]),
+        ).values(),
+      ];
     }
 
     await this.serviceService.save(entity).then(async (savedService) => {
@@ -70,6 +87,39 @@ export class ServiceController extends GenericController<Service> {
       );
       res.header("SUM", JSON.stringify(sumGrossOfQuery.total));
       res.send(serviceByQuery[0]);
+    } catch (err) {
+      res.status(HttpStatus.BAD_REQUEST).send({ err });
+    }
+  }
+
+  @Post("generate-built-in")
+  async generateBuiltInReport(
+    @Req() req: Request,
+    @Res() res: Response,
+    @ReportQuery() reportQuery: DateDto,
+  ): Promise<void> {
+    try {
+      const listOfBuiltInKeys: BuiltInReportDto[] = await this.serviceService.generateBuiltInReport(reportQuery);
+      let workbook = new excel.Workbook();
+      let worksheet = workbook.addWorksheet("Izvestaj");
+
+      worksheet.columns = [
+        { header: "Sifra", key: "code", width: 10 },
+        { header: "Nabavna cena", key: "purchase_price", width: 30 },
+        { header: "Prodajna cena", key: "key_price", width: 30 },
+        { header: "Ugradjeno", key: "built_in_amount", width: 30 },
+        { header: "Zarađeno", key: "profit", width: 30 },
+      ];
+
+      worksheet.addRows(JSON.parse(JSON.stringify(listOfBuiltInKeys)));
+
+      const date = moment().format("DD-MM-YYYY");
+      const path = REPORT_PATH + date + "-BUILT-IN" + ".xlsx";
+      workbook.xlsx.writeFile(path).then(() => {
+        this.reportService.save(new Report(path, ReportTypeEnum.BUILT_IN));
+        res.sendStatus(HttpStatus.CREATED);
+      });
+      res.send(await this.serviceService.generateBuiltInReport(reportQuery));
     } catch (err) {
       res.status(HttpStatus.BAD_REQUEST).send({ err });
     }

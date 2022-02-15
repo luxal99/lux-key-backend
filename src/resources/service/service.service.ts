@@ -5,7 +5,7 @@ import { ServiceRepository } from './service.repository';
 import { Query } from '../../models/Query';
 import { DateDto } from '../../models/DateDto';
 import { AllTimeEarnedDto } from '../analytics/models/AllTimeEarnedDto';
-import { Key } from "../key/Key";
+import { BuiltInReportDto } from '../../models/BuiltInReportDto';
 
 @Injectable()
 export class ServiceService extends GenericService<Service> {
@@ -56,4 +56,20 @@ export class ServiceService extends GenericService<Service> {
       .getRawOne();
   }
 
+  async generateBuiltInReport(dateQuery: DateDto): Promise<BuiltInReportDto[]> {
+    return await this.genericRepository
+      .createQueryBuilder('service')
+      .leftJoinAndSelect('service.serviceKeys', 'serviceKeys')
+      .leftJoinAndSelect('serviceKeys.idKey', 'idKey')
+      .select(
+        "idKey.code,idKey.purchase_price,serviceKeys.key_price,COUNT(idKey.code) as built_in_amount,SUM(serviceKeys.key_price) as profit ",
+      ).
+      groupBy("serviceKeys.key_price,idKey.code")
+      .where('date >= :startDate AND date <= :endDate', {
+        startDate: dateQuery.startDate,
+        endDate: dateQuery.endDate,
+      })
+      .orderBy("idKey.code")
+      .getRawMany();
+  }
 }
