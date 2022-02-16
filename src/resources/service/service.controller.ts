@@ -96,7 +96,7 @@ export class ServiceController extends GenericController<Service> {
   async generateBuiltInReport(
     @Req() req: Request,
     @Res() res: Response,
-    @ReportQuery() reportQuery: DateDto,
+    @Body() reportQuery: DateDto,
   ): Promise<void> {
     try {
       const listOfBuiltInKeys: BuiltInReportDto[] = await this.serviceService.generateBuiltInReport(reportQuery);
@@ -117,9 +117,8 @@ export class ServiceController extends GenericController<Service> {
       const path = REPORT_PATH + date + "-BUILT-IN" + ".xlsx";
       workbook.xlsx.writeFile(path).then(() => {
         this.reportService.save(new Report(path, ReportTypeEnum.BUILT_IN));
-        res.sendStatus(HttpStatus.CREATED);
+        res.sendStatus(HttpStatus.OK);
       });
-      res.send(await this.serviceService.generateBuiltInReport(reportQuery));
     } catch (err) {
       res.status(HttpStatus.BAD_REQUEST).send({ err });
     }
