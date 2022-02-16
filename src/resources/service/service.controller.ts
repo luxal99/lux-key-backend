@@ -114,7 +114,7 @@ export class ServiceController extends GenericController<Service> {
       worksheet.addRows(JSON.parse(JSON.stringify(listOfBuiltInKeys)));
 
       const date = moment().format("DD-MM-YYYY");
-      const path = REPORT_PATH + date + "-BUILT-IN" + ".xlsx";
+      const path = REPORT_PATH + date + "-BUILT_IN" + ".xlsx";
       workbook.xlsx.writeFile(path).then(() => {
         this.reportService.save(new Report(path, ReportTypeEnum.BUILT_IN));
         res.sendStatus(HttpStatus.OK);
