@@ -1,19 +1,19 @@
-import { Controller, Get, HttpStatus, Query, Res } from '@nestjs/common';
-import { ReportService } from './report.service';
-import { GenericController } from '../../generic/generic.controller';
-import { Report } from './Report';
-import { Response } from 'express';
-import { ReportTypeEnum } from '../../enum/ReportTypeEnum.enum';
+import { Controller, Get, HttpStatus, Query, Res } from "@nestjs/common";
+import { ReportService } from "./report.service";
+import { GenericController } from "../../generic/generic.controller";
+import { Report } from "./Report";
+import { Response } from "express";
+import { ReportTypeEnum } from "../../enum/ReportTypeEnum.enum";
 
-@Controller('report')
+@Controller("report")
 export class ReportController extends GenericController<Report> {
   constructor(private readonly reportService: ReportService) {
     super(reportService);
   }
 
-  @Get('by-type')
+  @Get("by-type")
   async getReportByType(
-    @Query('type') reportType: ReportTypeEnum,
+    @Query("type") reportType: ReportTypeEnum,
     @Res() res: Response,
   ) {
     try {
@@ -27,5 +27,12 @@ export class ReportController extends GenericController<Report> {
     } catch (error) {
       res.status(HttpStatus.BAD_REQUEST).send({ error });
     }
+  }
+
+  @Get("grouped")
+  async getGroupedReports(@Res() res: Response,
+  ) {
+      res.send(await this.reportService.getReportsGroupedByMonth());
+
   }
 }
