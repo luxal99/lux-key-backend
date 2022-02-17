@@ -62,14 +62,14 @@ export class ServiceService extends GenericService<Service> {
       .leftJoinAndSelect('service.serviceKeys', 'serviceKeys')
       .leftJoinAndSelect('serviceKeys.idKey', 'idKey')
       .select(
-        "idKey.code,idKey.purchase_price,serviceKeys.key_price,COUNT(idKey.code) as built_in_amount,SUM(serviceKeys.key_price) as profit ",
-      ).
-      groupBy("serviceKeys.key_price,idKey.code")
+        'idKey.code,idKey.purchase_price,serviceKeys.key_price,COUNT(idKey.code) as built_in_amount,SUM(serviceKeys.key_price) as profit ',
+      )
+      .groupBy('serviceKeys.key_price,idKey.code')
       .where('date >= :startDate AND date <= :endDate', {
         startDate: dateQuery.startDate,
         endDate: dateQuery.endDate,
       })
-      .orderBy("idKey.code")
+      .orderBy('idKey.code')
       .getRawMany();
   }
 }
