@@ -78,39 +78,6 @@ export class KeyController extends GenericController<Key> {
     });
   }
 
-  @Post('generate-key-service-count-status')
-  async generateKeyServiceCountStatus(@Res() res: Response) {
-    let response: any[] = await this.serviceService.genericRepository
-      .createQueryBuilder('service')
-      .leftJoinAndSelect('service.serviceKeys', 'serviceKeys')
-      .leftJoinAndSelect('serviceKeys.idKey', 'idKey')
-      .select('idKey.id, idKey.code,COUNT(idKey.code) as amount')
-      .groupBy('idKey.code')
-      .orderBy('COUNT(idKey.id)', 'DESC')
-      .getRawMany();
-    response = response.map((item) => ({
-      code: item.code,
-      amount: item.amount,
-    }));
-
-    let workbook = new excel.Workbook();
-    let worksheet = workbook.addWorksheet('Izvestaj');
-
-    worksheet.columns = [
-      { header: 'Sifra', key: 'code', width: 10 },
-      { header: 'Kolicina', key: 'amount', width: 30 },
-    ];
-
-    worksheet.addRows(JSON.parse(JSON.stringify(response)));
-
-    const date = moment().format('DD-MM-YYYY');
-    const path = REPORT_PATH + date + '-BUILT_IN' + '.xlsx';
-    workbook.xlsx.writeFile(path).then(() => {
-      this.reportService.save(new Report(path, ReportTypeEnum.BUILT_IN));
-      res.sendStatus(HttpStatus.CREATED);
-    });
-  }
-
   @Get('by-key-sub-category')
   async getAllKeySubCategoryByKeyCategory(
     @Req() req: Request,

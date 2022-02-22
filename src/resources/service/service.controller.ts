@@ -4,7 +4,7 @@ import { GenericController } from "../../generic/generic.controller";
 import { Service } from "./Service";
 import { Request, Response } from "express";
 import { KeyService } from "../key/key.service";
-import { DateQuery, Pagination, ReportQuery, Sort, } from "../../annotations/annotations";
+import { DateQuery, Pagination, Sort, } from "../../annotations/annotations";
 import { DateDto } from "../../models/DateDto";
 import { PaginationDto } from "../../models/PaginationDto";
 import { SortDto } from "../../models/SortDto";
@@ -116,7 +116,7 @@ export class ServiceController extends GenericController<Service> {
       const date = moment().format("DD-MM-YYYY");
       const path = REPORT_PATH + date + "-BUILT_IN" + ".xlsx";
       workbook.xlsx.writeFile(path).then(() => {
-        this.reportService.save(new Report(path, ReportTypeEnum.BUILT_IN));
+        this.reportService.save(new Report(path, ReportTypeEnum.BUILT_IN, reportQuery.startDate, reportQuery.endDate));
         res.sendStatus(HttpStatus.OK);
       });
     } catch (err) {
